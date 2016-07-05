@@ -3,6 +3,7 @@ import collections
 import logging
 import os
 import re
+import sys
 
 
 #
@@ -31,7 +32,8 @@ def is_project(path):
                 return True
     return False
 
-def dig_tests(path, depth = 256):
+
+def dig_tests(path, depth=256):
     """Look through the directory tree starting from 'path' to the given 'depth' and return a list of
     full paths to test projects found. [depth == 1: no search in subfolders; default: search to the depth of 256]"""
     if depth > 256:
@@ -62,37 +64,35 @@ class Arguments(object):
     depth = 256
 
     def __init__(self):
-        # Arguments parsing
+        # get arguments
         parser = argparse.ArgumentParser()
         parser.add_argument('folders', nargs='*', type=str)
-        parser.add_argument('-v', '--verbose',    help='verbose mode', action='store_true')
+        parser.add_argument('-v', '--verbose', help='verbose mode', action='store_true')
         parser.add_argument('-s', '--stop_ports', help='stop ports before run', action='store_true')
-        parser.add_argument('-f', '--find_cfg',   help='find AutomationConfig first, use convertion only if there is no config', action='store_true')
-        parser.add_argument('-l', '--log_file',   help='custom path to log file')
-        parser.add_argument('-t', '--test_list',  help='path to a file listing paths to tests', type=argparse.FileType('r'))
-        parser.add_argument('-m', '--simulate',   help='simulation mode (without connection to device)', action='store_true')
-        parser.add_argument('-d', '--depth',      help='depth of search for test projects in folders', type=int, default=256)
-        args = parser.parse_args()
+        parser.add_argument('-f', '--find_cfg',
+                            help='find AutomationConfig first, use convertion only if there is no config',
+                            action='store_true')
+        parser.add_argument('-l', '--log_file', help='custom path to log file')
+        parser.add_argument('-t', '--test_list',
+                            help='path to a file listing paths to tests',
+                            type=argparse.FileType('r'))
+        parser.add_argument('-m', '--simulate',
+                            help='simulation mode (without connection to device)', action='store_true')
+        parser.add_argument('-d', '--depth', help='depth of search for test projects in folders', type=int, default=256)
+        parser.add_argument('-T', '--test_types',
+                            help='types of tests',
+                            action='append',
+                            choices=('func', 'perf', '3rd'))
 
-        # Assign parsed values to parameters
+        if len(sys.argv[1:]) == 0:
+            parser.print_help()
+            sys.exit(1)
+        else:
+            args = parser.parse_args()
 
-        # Append test folders from 'folders' parameter
-        if args.folders:
-            for path in args.folders:
-                self.folders.extend(dig_tests(path, args.depth))
-
-        # Append test folders from file given as 'test_list' parameter
-        if args.test_list:
-            test_list = open(args.test_list.name, 'r')
-            for path in test_list:
-                path = path.strip('"\n')
-                if path.startswith("#") or path.startswith(" "):
-                    continue
-                if os.path.exists(path):
-                    self.folders.extend(dig_tests(path, args.depth))
-
-        if not len(self.folders):
-           raise Exception('No test projects found in arguments paths.')
+        self.args = args
+        self.append_folders()
+        self.folders = self.get_types_of_tests(self.folders)
         self.stop_ports = bool(args.stop_ports)
         self.find_cfg = bool(args.find_cfg)
         if args.log_file:
@@ -101,23 +101,59 @@ class Arguments(object):
         self.verbose = bool(args.verbose)
         self.simulate = bool(args.simulate)
 
+    def append_folders(self):
+        """Append test folders from 'folders' parameter or from file given as 'test_list' parameter"""
+        if self.args.folders:
+            for path in self.args.folders:
+                self.folders.extend(dig_tests(path, self.args.depth))
+        elif self.args.test_list:
+            test_list = open(self.args.test_list.name, 'r')
+            for path in test_list:
+                path = path.strip('"\n')
+                if path.startswith("#") or path.startswith(" "):
+                    continue
+                if os.path.exists(path):
+                    self.folders.extend(dig_tests(path, self.args.depth))
+
+    @classmethod
+    def get_types_of_tests(cls, paths, types_test=None):
+        """
+        Return list of full paths to directories that contains specify types of tests.
+        Ex.: functional tests only.
+        """
+        if types_test is None:
+            types_test = ['func', 'perf', '3rd']
+            # TODO: Return original paths for save backward compatibility.
+            #   Delete after accept tests naming convention
+            return paths
+
+        res_dir = []
+        # select dirs contain specify tests
+        for typetest in types_test:
+            for directory in paths:
+                if '_' + typetest in directory:
+                    res_dir.append(directory)
+        return res_dir
 
 #
 # Logging utils
 #
+
+
 class Bcolors:
-    HEADER    = '\033[95m'
-    OKBLUE    = '\033[94m'
-    OK        = '\033[92m'
-    WARNING   = '\033[93m'
-    FAIL      = '\033[91m'
-    ABORT     = '\033[0;33m'
-    ENDC      = '\033[0m'
-    BOLD      = '\033[1m'
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OK = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ABORT = '\033[0;33m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
 
 class Logger(object):
+
     def __init__(self, log_file, verbose_mode):
         self.verbose_mode = verbose_mode
         log_dir = os.path.dirname(log_file)
@@ -126,7 +162,7 @@ class Logger(object):
         logging.basicConfig(filename=log_file, format='%(asctime)s %(levelname)s: %(message)s', level=logging.DEBUG)
 
     def separator(self):
-        self.info('-------------------------------------------------------------------------------------------')
+        self.info('-' * 90)
 
     def info(self, msg):
         print msg

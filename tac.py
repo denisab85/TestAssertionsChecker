@@ -18,8 +18,13 @@ def main():
     failed = 0
     aborted = 0
     total_duration = 0
+
+    if not len(params.folders):
+        log.error('ERROR: No test projects found in arguments paths. Exit.')
+        sys.exit(1)
+
     log.separator()
-    log.verbose("The following folders have been added to execution list:")
+    log.verbose("The following folders have been added to execution list: ")
     for dir in params.folders:
         log.verbose(dir)
     log.verbose("\n")
@@ -28,7 +33,7 @@ def main():
         if project:
             projects.append(project)
             total_duration += project.duration()
-    total_duration = datetime.timedelta(seconds=total_duration/1000)
+    total_duration = datetime.timedelta(seconds=total_duration / 1000)
     finish_time = datetime.datetime.now() + total_duration
     log.info('Number of tests to run:   %s' % len(params.folders))
     log.info('Estimated total duration: %s' % total_duration)
