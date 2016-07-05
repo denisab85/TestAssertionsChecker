@@ -3,8 +3,8 @@ FROM ubuntu:latest
 ENV USER root
 ENV DEBIAN_FRONTEND noninteractive
 
-ARG API_VERSION='5.3.0.35.gdfbb28b'
-ARG API_DOWNLOAD_URL=http://build.swifttest.com:8080/job/API_MAIN_Combo/330/artifact/dist/$API_VERSION/*zip*/$API_VERSION.zip
+ARG API_DOWNLOAD_URL=http://build.swifttest.com:8080/job/API_MAIN_Combo/lastSuccessfulBuild/artifact/dist/*zip*/dist.zip
+
 ARG APP_HOME=/usr/src/tac
 ARG PACKAGES='python python-dev mono-complete unzip curl'
 
@@ -20,7 +20,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E03280
   cd /tmp && \
   curl $API_DOWNLOAD_URL > api.zip && \
   unzip api.zip && \
-  cd $API_VERSION && \
+  cd dist/* && \
   yes | ./install_api -y && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
