@@ -38,7 +38,7 @@ Useful options (more at https://docs.docker.com/engine/reference/run/):
   `-i` keep STDIN open even if not attached  
   `-t` allocate a pseudo-tty
 
- ## Run tests in docker container
+## Run tests in docker container
 ```
 docker run \
   -it
