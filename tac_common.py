@@ -62,37 +62,37 @@ class Arguments(object):
     test_list = ""
     simulate = False
     depth = 256
+    parser = argparse.ArgumentParser()
 
     def __init__(self):
         # get arguments
-        parser = argparse.ArgumentParser()
-        parser.add_argument('folders', nargs='*', type=str)
-        parser.add_argument('-v', '--verbose', help='verbose mode', action='store_true')
-        parser.add_argument('-s', '--stop_ports', help='stop ports before run', action='store_true')
-        parser.add_argument('-f', '--find_cfg',
+        self.parser.add_argument('folders', nargs='*', type=str)
+        self.parser.add_argument('-v', '--verbose', help='verbose mode', action='store_true')
+        self.parser.add_argument('-s', '--stop_ports', help='stop ports before run', action='store_true')
+        self.parser.add_argument('-f', '--find_cfg',
                             help='find AutomationConfig first, use convertion only if there is no config',
                             action='store_true')
-        parser.add_argument('-l', '--log_file', help='custom path to log file')
-        parser.add_argument('-t', '--test_list',
+        self.parser.add_argument('-l', '--log_file', help='custom path to log file')
+        self.parser.add_argument('-t', '--test_list',
                             help='path to a file listing paths to tests',
                             type=argparse.FileType('r'))
-        parser.add_argument('-m', '--simulate',
+        self.parser.add_argument('-m', '--simulate',
                             help='simulation mode (without connection to device)', action='store_true')
-        parser.add_argument('-d', '--depth', help='depth of search for test projects in folders', type=int, default=256)
-        parser.add_argument('-T', '--test_types',
+        self.parser.add_argument('-d', '--depth', help='depth of search for test projects in folders', type=int, default=256)
+        self.parser.add_argument('-T', '--test_types',
                             help='types of tests',
                             action='append',
                             choices=('func', 'perf', '3rd'))
 
         if len(sys.argv[1:]) == 0:
-            parser.print_help()
+            self.parser.print_help()
             sys.exit(1)
         else:
-            args = parser.parse_args()
+            args = self.parser.parse_args()
 
         self.args = args
         self.append_folders()
-        self.folders = self.get_types_of_tests(self.folders)
+        self.folders = self.get_types_of_tests()
         self.stop_ports = bool(args.stop_ports)
         self.find_cfg = bool(args.find_cfg)
         if args.log_file:
@@ -115,23 +115,23 @@ class Arguments(object):
                 if os.path.exists(path):
                     self.folders.extend(dig_tests(path, self.args.depth))
 
-    @classmethod
-    def get_types_of_tests(cls, paths, types_test=None):
+
+    def get_types_of_tests(self):
         """
-        Return list of full paths to directories that contains specify types of tests.
+        Return list of full paths to directories that contains specified types of tests.
         Ex.: functional tests only.
         """
-        if types_test is None:
-            types_test = ['func', 'perf', '3rd']
-            # TODO: Return original paths for save backward compatibility.
+        if self.args.test_types is None:
+            self.args.test_types = ['func', 'perf', '3rd']
+            # TODO: Return original paths to save backward compatibility.
             #   Delete after accept tests naming convention
-            return paths
+            return self.folders
 
         res_dir = []
-        # select dirs contain specify tests
-        for typetest in types_test:
-            for directory in paths:
-                if '_' + typetest in directory:
+        # select dirs containing specified tests
+        for tt in self.args.test_types:
+            for directory in self.folders:
+                if '_' + tt in directory:
                     res_dir.append(directory)
         return res_dir
 
