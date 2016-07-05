@@ -1,0 +1,1230 @@
+#=============================================================================================
+# Copyright (C) Oct 2015: OIS (Oleg Strelnikov), LoadDynamix, Inc.
+# Copyright (C) 2015 LoadDynamix, Inc.
+# All rights reserved.
+# Refer to your license for permissions and restrictions.
+#=============================================================================================
+
+#Generic
+#ANY generic.rx.bytes >= 0
+#ANY generic.rx.packets >= 0
+#ANY generic.tx.bytes >= 0
+#ANY generic.tx.packets >= 0
+#ANY generic.actions.attempts >= 0
+#ANY generic.actions.succeeds >= 0
+#ANY generic.actions.fails >= 0
+#ANY generic.actions.aborts >= 0
+#ANY generic.actions.attempts >= generic.actions.succeeds + generic.actions.fails + generic.actions.aborts
+#LAST generic.actions.attempts == generic.actions.succeeds + generic.actions.fails + generic.actions.aborts
+#ANY generic.time.count >= 0
+#ANY generic.time.total >= 0
+#ANY generic.time.min >= 0
+#ANY generic.time.max >= 0
+#ANY generic.time.max >= generic.time.min
+#ANY generic.actions.retries >= 0
+#ANY generic.rx.good.bytes >= 0
+#ANY generic.rx.good.packets >= 0
+#ANY generic.tx.good.bytes >= 0
+#ANY generic.tx.good.packets >= 0
+#ANY generic.rx.failed.bytes >= 0
+#ANY generic.rx.failed.packets >= 0
+#ANY generic.tx.failed.bytes >= 0
+#ANY generic.tx.failed.packets >= 0
+#ANY generic.rx.dropped.bytes >= 0
+#ANY generic.rx.dropped.packets >= 0
+#ANY generic.tx.dropped.bytes >= 0
+#ANY generic.tx.dropped.packets >= 0
+#ANY generic.rx.bytes == generic.rx.good.bytes + generic.rx.failed.bytes +  generic.rx.dropped.bytes
+#ANY generic.rx.packets == generic.rx.good.packets + generic.rx.failed.packets +  generic.rx.dropped.packets
+#ANY generic.tx.bytes == generic.tx.good.bytes + generic.tx.failed.bytes +  generic.tx.dropped.bytes
+#ANY generic.tx.packets == generic.tx.good.packets + generic.tx.failed.packets +  generic.tx.dropped.packets
+#ANY generic.errors.total >= 0
+#ANY generic.verification.attempts >= 0
+#ANY generic.verification.succeeds >= 0
+#ANY generic.verification.fails >= 0
+#ANY generic.verification.aborts >= 0
+#ANY generic.verification.attempts >= generic.verification.succeeds + generic.verification.fails + generic.verification.aborts
+#LAST generic.verification.attempts == generic.verification.succeeds + generic.verification.fails + generic.verification.aborts
+
+#SMB
+
+#SMB2
+
+#RPC
+
+#Kerberos
+
+#discard
+
+#echo
+
+#HTTP
+ANY http.rx.bytes >= 0
+ANY http.rx.packets >= 0
+ANY http.tx.bytes >= 0
+ANY http.tx.packets >= 0
+ANY http.actions.attempts >= 0
+ANY http.actions.succeeds >= 0
+ANY http.actions.fails >= 0
+ANY http.actions.aborts >= 0
+ANY http.actions.attempts >= http.actions.succeeds + http.actions.fails + http.actions.aborts
+LAST http.actions.attempts == http.actions.succeeds + http.actions.fails + http.actions.aborts
+ANY http.time.count >= 0
+ANY http.time.total >= 0
+ANY http.time.min >= 0
+ANY http.time.max >= 0
+ANY http.time.max >= http.time.min
+#ANY http.actions.retries >= 0
+ANY http.rx.good.bytes >= 0
+ANY http.rx.good.packets >= 0
+ANY http.tx.good.bytes >= 0
+ANY http.tx.good.packets >= 0
+ANY http.rx.failed.bytes >= 0
+ANY http.rx.failed.packets >= 0
+ANY http.tx.failed.bytes >= 0
+ANY http.tx.failed.packets >= 0
+ANY http.rx.dropped.bytes >= 0
+ANY http.rx.dropped.packets >= 0
+ANY http.tx.dropped.bytes >= 0
+ANY http.tx.dropped.packets >= 0
+ANY http.rx.bytes == http.rx.good.bytes + http.rx.failed.bytes +  http.rx.dropped.bytes
+ANY http.rx.packets == http.rx.good.packets + http.rx.failed.packets +  http.rx.dropped.packets
+ANY http.tx.bytes == http.tx.good.bytes + http.tx.failed.bytes +  http.tx.dropped.bytes
+ANY http.tx.packets == http.tx.good.packets + http.tx.failed.packets +  http.tx.dropped.packets
+ANY http.errors_total >= 0
+ANY http.verification.attempts >= 0
+ANY http.verification.succeeds >= 0
+ANY http.verification.fails >= 0
+ANY http.verification.aborts >= 0
+ANY http.verification.attempts >= http.verification.succeeds + http.verification.fails + http.verification.aborts
+LAST http.verification.attempts == http.verification.succeeds + http.verification.fails + http.verification.aborts
+
+ANY http.rx.bytes == http.commands.client_open.rx.bytes + http.commands.get.rx.bytes + http.commands.put.rx.bytes + http.commands.post.rx.bytes + http.commands.head.rx.bytes + http.commands.delete.rx.bytes + http.commands.options.rx.bytes + http.commands.trace.rx.bytes + http.commands.connect.rx.bytes + http.commands.server_open.rx.bytes
+ANY http.rx.packets == http.commands.client_open.rx.packets + http.commands.get.rx.packets + http.commands.put.rx.packets + http.commands.post.rx.packets + http.commands.head.rx.packets + http.commands.delete.rx.packets + http.commands.options.rx.packets + http.commands.trace.rx.packets + http.commands.connect.rx.packets + http.commands.server_open.rx.packets
+ANY http.tx.bytes == http.commands.client_open.tx.bytes + http.commands.get.tx.bytes + http.commands.put.tx.bytes + http.commands.post.tx.bytes + http.commands.head.tx.bytes + http.commands.delete.tx.bytes + http.commands.options.tx.bytes + http.commands.trace.tx.bytes + http.commands.connect.tx.bytes + http.commands.server_open.tx.bytes
+ANY http.tx.packets == http.commands.client_open.tx.packets + http.commands.get.tx.packets + http.commands.put.tx.packets + http.commands.post.tx.packets + http.commands.head.tx.packets + http.commands.delete.tx.packets + http.commands.options.tx.packets + http.commands.trace.tx.packets + http.commands.connect.tx.packets + http.commands.server_open.tx.packets
+ANY http.rx.good.bytes == http.commands.client_open.rx.good.bytes + http.commands.get.rx.good.bytes + http.commands.put.rx.good.bytes + http.commands.post.rx.good.bytes + http.commands.head.rx.good.bytes + http.commands.delete.rx.good.bytes + http.commands.options.rx.good.bytes + http.commands.trace.rx.good.bytes + http.commands.connect.rx.good.bytes + http.commands.server_open.rx.good.bytes
+ANY http.rx.good.packets == http.commands.client_open.rx.good.packets + http.commands.get.rx.good.packets + http.commands.put.rx.good.packets + http.commands.post.rx.good.packets + http.commands.head.rx.good.packets + http.commands.delete.rx.good.packets + http.commands.options.rx.good.packets + http.commands.trace.rx.good.packets + http.commands.connect.rx.good.packets + http.commands.server_open.rx.good.packets
+ANY http.tx.good.bytes == http.commands.client_open.tx.good.bytes + http.commands.get.tx.good.bytes + http.commands.put.tx.good.bytes + http.commands.post.tx.good.bytes + http.commands.head.tx.good.bytes + http.commands.delete.tx.good.bytes + http.commands.options.tx.good.bytes + http.commands.trace.tx.good.bytes + http.commands.connect.tx.good.bytes + http.commands.server_open.tx.good.bytes
+ANY http.tx.good.packets == http.commands.client_open.tx.good.packets + http.commands.get.tx.good.packets + http.commands.put.tx.good.packets + http.commands.post.tx.good.packets + http.commands.head.tx.good.packets + http.commands.delete.tx.good.packets + http.commands.options.tx.good.packets + http.commands.trace.tx.good.packets + http.commands.connect.tx.good.packets + http.commands.server_open.tx.good.packets
+ANY http.rx.failed.bytes == http.commands.client_open.rx.failed.bytes + http.commands.get.rx.failed.bytes + http.commands.put.rx.failed.bytes + http.commands.post.rx.failed.bytes + http.commands.head.rx.failed.bytes + http.commands.delete.rx.failed.bytes + http.commands.options.rx.failed.bytes + http.commands.trace.rx.failed.bytes + http.commands.connect.rx.failed.bytes + http.commands.server_open.rx.failed.bytes
+ANY http.rx.failed.packets == http.commands.client_open.rx.failed.packets + http.commands.get.rx.failed.packets + http.commands.put.rx.failed.packets + http.commands.post.rx.failed.packets + http.commands.head.rx.failed.packets + http.commands.delete.rx.failed.packets + http.commands.options.rx.failed.packets + http.commands.trace.rx.failed.packets + http.commands.connect.rx.failed.packets + http.commands.server_open.rx.failed.packets
+ANY http.tx.failed.bytes == http.commands.client_open.tx.failed.bytes + http.commands.get.tx.failed.bytes + http.commands.put.tx.failed.bytes + http.commands.post.tx.failed.bytes + http.commands.head.tx.failed.bytes + http.commands.delete.tx.failed.bytes + http.commands.options.tx.failed.bytes + http.commands.trace.tx.failed.bytes + http.commands.connect.tx.failed.bytes + http.commands.server_open.tx.failed.bytes
+ANY http.tx.failed.packets == http.commands.client_open.tx.failed.packets + http.commands.get.tx.failed.packets + http.commands.put.tx.failed.packets + http.commands.post.tx.failed.packets + http.commands.head.tx.failed.packets + http.commands.delete.tx.failed.packets + http.commands.options.tx.failed.packets + http.commands.trace.tx.failed.packets + http.commands.connect.tx.failed.packets + http.commands.server_open.tx.failed.packets
+ANY http.rx.dropped.bytes == http.commands.client_open.rx.dropped.bytes + http.commands.get.rx.dropped.bytes + http.commands.put.rx.dropped.bytes + http.commands.post.rx.dropped.bytes + http.commands.head.rx.dropped.bytes + http.commands.delete.rx.dropped.bytes + http.commands.options.rx.dropped.bytes + http.commands.trace.rx.dropped.bytes + http.commands.connect.rx.dropped.bytes + http.commands.server_open.rx.dropped.bytes
+ANY http.rx.dropped.packets == http.commands.client_open.rx.dropped.packets + http.commands.get.rx.dropped.packets + http.commands.put.rx.dropped.packets + http.commands.post.rx.dropped.packets + http.commands.head.rx.dropped.packets + http.commands.delete.rx.dropped.packets + http.commands.options.rx.dropped.packets + http.commands.trace.rx.dropped.packets + http.commands.connect.rx.dropped.packets + http.commands.server_open.rx.dropped.packets
+ANY http.tx.dropped.bytes == http.commands.client_open.tx.dropped.bytes + http.commands.get.tx.dropped.bytes + http.commands.put.tx.dropped.bytes + http.commands.post.tx.dropped.bytes + http.commands.head.tx.dropped.bytes + http.commands.delete.tx.dropped.bytes + http.commands.options.tx.dropped.bytes + http.commands.trace.tx.dropped.bytes + http.commands.connect.tx.dropped.bytes + http.commands.server_open.tx.dropped.bytes
+ANY http.tx.dropped.packets == http.commands.client_open.tx.dropped.packets + http.commands.get.tx.dropped.packets + http.commands.put.tx.dropped.packets + http.commands.post.tx.dropped.packets + http.commands.head.tx.dropped.packets + http.commands.delete.tx.dropped.packets + http.commands.options.tx.dropped.packets + http.commands.trace.tx.dropped.packets + http.commands.connect.tx.dropped.packets + http.commands.server_open.tx.dropped.packets
+ANY http.actions.attempts == http.commands.client_open.actions.attempts + http.commands.get.actions.attempts + http.commands.put.actions.attempts + http.commands.post.actions.attempts + http.commands.head.actions.attempts + http.commands.delete.actions.attempts + http.commands.options.actions.attempts + http.commands.trace.actions.attempts + http.commands.connect.actions.attempts + http.commands.server_open.actions.attempts
+ANY http.actions.succeeds == http.commands.client_open.actions.succeeds + http.commands.get.actions.succeeds + http.commands.put.actions.succeeds + http.commands.post.actions.succeeds + http.commands.head.actions.succeeds + http.commands.delete.actions.succeeds + http.commands.options.actions.succeeds + http.commands.trace.actions.succeeds + http.commands.connect.actions.succeeds + http.commands.server_open.actions.succeeds
+ANY http.actions.fails == http.commands.client_open.actions.fails + http.commands.get.actions.fails + http.commands.put.actions.fails + http.commands.post.actions.fails + http.commands.head.actions.fails + http.commands.delete.actions.fails + http.commands.options.actions.fails + http.commands.trace.actions.fails + http.commands.connect.actions.fails + http.commands.server_open.actions.fails
+ANY http.actions.aborts == http.commands.client_open.actions.aborts + http.commands.get.actions.aborts + http.commands.put.actions.aborts + http.commands.post.actions.aborts + http.commands.head.actions.aborts + http.commands.delete.actions.aborts + http.commands.options.actions.aborts + http.commands.trace.actions.aborts + http.commands.connect.actions.aborts + http.commands.server_open.actions.aborts
+#ANY http.actions.retries == http.commands.client_open.actions.retries + http.commands.get.actions.retries + http.commands.put.actions.retries + http.commands.post.actions.retries + http.commands.head.actions.retries + http.commands.delete.actions.retries + http.commands.options.actions.retries + http.commands.trace.actions.retries + http.commands.connect.actions.retries + http.commands.server_open.actions.retries
+ANY http.errors_total == http.commands.client_open.errors_total + http.commands.get.errors_total + http.commands.put.errors_total + http.commands.post.errors_total + http.commands.head.errors_total + http.commands.delete.errors_total + http.commands.options.errors_total + http.commands.trace.errors_total + http.commands.connect.errors_total + http.commands.server_open.errors_total
+ANY http.verification.attempts == http.commands.client_open.verification.attempts + http.commands.get.verification.attempts + http.commands.put.verification.attempts + http.commands.post.verification.attempts + http.commands.head.verification.attempts + http.commands.delete.verification.attempts + http.commands.options.verification.attempts + http.commands.trace.verification.attempts + http.commands.connect.verification.attempts + http.commands.server_open.verification.attempts
+ANY http.verification.succeeds == http.commands.client_open.verification.succeeds + http.commands.get.verification.succeeds + http.commands.put.verification.succeeds + http.commands.post.verification.succeeds + http.commands.head.verification.succeeds + http.commands.delete.verification.succeeds + http.commands.options.verification.succeeds + http.commands.trace.verification.succeeds + http.commands.connect.verification.succeeds + http.commands.server_open.verification.succeeds
+ANY http.verification.fails == http.commands.client_open.verification.fails + http.commands.get.verification.fails + http.commands.put.verification.fails + http.commands.post.verification.fails + http.commands.head.verification.fails + http.commands.delete.verification.fails + http.commands.options.verification.fails + http.commands.trace.verification.fails + http.commands.connect.verification.fails + http.commands.server_open.verification.fails
+ANY http.verification.aborts == http.commands.client_open.verification.aborts + http.commands.get.verification.aborts + http.commands.put.verification.aborts + http.commands.post.verification.aborts + http.commands.head.verification.aborts + http.commands.delete.verification.aborts + http.commands.options.verification.aborts + http.commands.trace.verification.aborts + http.commands.connect.verification.aborts + http.commands.server_open.verification.aborts
+
+ANY http.commands.client_open.rx.bytes == 0
+ANY http.commands.client_open.rx.packets == 0
+ANY http.commands.client_open.tx.bytes == 0
+ANY http.commands.client_open.tx.packets == 0
+ANY http.commands.client_open.actions.attempts == 0
+ANY http.commands.client_open.actions.succeeds == 0
+ANY http.commands.client_open.actions.fails == 0
+ANY http.commands.client_open.actions.aborts == 0
+ANY http.commands.client_open.time.count == 0
+ANY http.commands.client_open.time.total == 0
+ANY http.commands.client_open.time.min == 0
+ANY http.commands.client_open.time.max == 0
+#ANY http.commands.client_open.actions.retries == 0
+ANY http.commands.client_open.rx.good.bytes == 0
+ANY http.commands.client_open.rx.good.packets == 0
+ANY http.commands.client_open.tx.good.bytes == 0
+ANY http.commands.client_open.tx.good.packets == 0
+ANY http.commands.client_open.rx.failed.bytes == 0
+ANY http.commands.client_open.rx.failed.packets == 0
+ANY http.commands.client_open.tx.failed.bytes == 0
+ANY http.commands.client_open.tx.failed.packets == 0
+ANY http.commands.client_open.rx.dropped.bytes == 0
+ANY http.commands.client_open.rx.dropped.packets == 0
+ANY http.commands.client_open.tx.dropped.bytes == 0
+ANY http.commands.client_open.tx.dropped.packets == 0
+ANY http.commands.client_open.errors_total == 0
+ANY http.commands.client_open.verification.attempts == 0
+ANY http.commands.client_open.verification.succeeds == 0
+ANY http.commands.client_open.verification.fails == 0
+ANY http.commands.client_open.verification.aborts == 0
+
+ANY http.commands.client_close.rx.bytes == 0
+ANY http.commands.client_close.rx.packets == 0
+ANY http.commands.client_close.tx.bytes == 0
+ANY http.commands.client_close.tx.packets == 0
+ANY http.commands.client_close.actions.attempts == 0
+ANY http.commands.client_close.actions.succeeds == 0
+ANY http.commands.client_close.actions.fails == 0
+ANY http.commands.client_close.actions.aborts == 0
+ANY http.commands.client_close.time.count == 0
+ANY http.commands.client_close.time.total == 0
+ANY http.commands.client_close.time.min == 0
+ANY http.commands.client_close.time.max == 0
+#ANY http.commands.client_close.actions.retries == 0
+ANY http.commands.client_close.rx.good.bytes == 0
+ANY http.commands.client_close.rx.good.packets == 0
+ANY http.commands.client_close.tx.good.bytes == 0
+ANY http.commands.client_close.tx.good.packets == 0
+ANY http.commands.client_close.rx.failed.bytes == 0
+ANY http.commands.client_close.rx.failed.packets == 0
+ANY http.commands.client_close.tx.failed.bytes == 0
+ANY http.commands.client_close.tx.failed.packets == 0
+ANY http.commands.client_close.rx.dropped.bytes == 0
+ANY http.commands.client_close.rx.dropped.packets == 0
+ANY http.commands.client_close.tx.dropped.bytes == 0
+ANY http.commands.client_close.tx.dropped.packets == 0
+ANY http.commands.client_close.errors_total == 0
+ANY http.commands.client_close.verification.attempts == 0
+ANY http.commands.client_close.verification.succeeds == 0
+ANY http.commands.client_close.verification.fails == 0
+ANY http.commands.client_close.verification.aborts == 0
+
+ANY http.commands.get.rx.bytes >= 0
+ANY http.commands.get.rx.packets >= 0
+ANY http.commands.get.tx.bytes >= 0
+ANY http.commands.get.tx.packets >= 0
+ANY http.commands.get.actions.attempts >= 0
+ANY http.commands.get.actions.succeeds >= 0
+ANY http.commands.get.actions.fails >= 0
+ANY http.commands.get.actions.aborts >= 0
+ANY http.commands.get.actions.attempts >= http.commands.get.actions.succeeds + http.commands.get.actions.fails + http.commands.get.actions.aborts
+LAST http.commands.get.actions.attempts == http.commands.get.actions.succeeds + http.commands.get.actions.fails + http.commands.get.actions.aborts
+ANY http.commands.get.time.count >= 0
+ANY http.commands.get.time.total >= 0
+ANY http.commands.get.time.min >= 0
+ANY http.commands.get.time.max >= 0
+ANY http.commands.get.time.max >= http.commands.get.time.min
+#ANY http.commands.get.actions.retries >= 0
+ANY http.commands.get.rx.good.bytes >= 0
+ANY http.commands.get.rx.good.packets >= 0
+ANY http.commands.get.tx.good.bytes >= 0
+ANY http.commands.get.tx.good.packets >= 0
+ANY http.commands.get.rx.failed.bytes >= 0
+ANY http.commands.get.rx.failed.packets >= 0
+ANY http.commands.get.tx.failed.bytes >= 0
+ANY http.commands.get.tx.failed.packets >= 0
+ANY http.commands.get.rx.dropped.bytes >= 0
+ANY http.commands.get.rx.dropped.packets >= 0
+ANY http.commands.get.tx.dropped.bytes >= 0
+ANY http.commands.get.tx.dropped.packets >= 0
+ANY http.commands.get.rx.bytes == http.commands.get.rx.good.bytes + http.commands.get.rx.failed.bytes +  http.commands.get.rx.dropped.bytes
+ANY http.commands.get.rx.packets == http.commands.get.rx.good.packets + http.commands.get.rx.failed.packets +  http.commands.get.rx.dropped.packets
+ANY http.commands.get.tx.bytes == http.commands.get.tx.good.bytes + http.commands.get.tx.failed.bytes +  http.commands.get.tx.dropped.bytes
+ANY http.commands.get.tx.packets == http.commands.get.tx.good.packets + http.commands.get.tx.failed.packets +  http.commands.get.tx.dropped.packets
+ANY http.commands.get.errors_total >= 0
+ANY http.commands.get.verification.attempts >= 0
+ANY http.commands.get.verification.succeeds >= 0
+ANY http.commands.get.verification.fails >= 0
+ANY http.commands.get.verification.aborts >= 0
+ANY http.commands.get.verification.attempts >= http.commands.get.verification.succeeds + http.commands.get.verification.fails + http.commands.get.verification.aborts
+LAST http.commands.get.verification.attempts == http.commands.get.verification.succeeds + http.commands.get.verification.fails + http.commands.get.verification.aborts
+
+ANY http.commands.put.rx.bytes >= 0
+ANY http.commands.put.rx.packets >= 0
+ANY http.commands.put.tx.bytes >= 0
+ANY http.commands.put.tx.packets >= 0
+ANY http.commands.put.actions.attempts >= 0
+ANY http.commands.put.actions.succeeds >= 0
+ANY http.commands.put.actions.fails >= 0
+ANY http.commands.put.actions.aborts >= 0
+ANY http.commands.put.actions.attempts >= http.commands.put.actions.succeeds + http.commands.put.actions.fails + http.commands.put.actions.aborts
+LAST http.commands.put.actions.attempts == http.commands.put.actions.succeeds + http.commands.put.actions.fails + http.commands.put.actions.aborts
+ANY http.commands.put.time.count >= 0
+ANY http.commands.put.time.total >= 0
+ANY http.commands.put.time.min >= 0
+ANY http.commands.put.time.max >= 0
+ANY http.commands.put.time.max >= http.commands.put.time.min
+#ANY http.commands.put.actions.retries >= 0
+ANY http.commands.put.rx.good.bytes >= 0
+ANY http.commands.put.rx.good.packets >= 0
+ANY http.commands.put.tx.good.bytes >= 0
+ANY http.commands.put.tx.good.packets >= 0
+ANY http.commands.put.rx.failed.bytes >= 0
+ANY http.commands.put.rx.failed.packets >= 0
+ANY http.commands.put.tx.failed.bytes >= 0
+ANY http.commands.put.tx.failed.packets >= 0
+ANY http.commands.put.rx.dropped.bytes >= 0
+ANY http.commands.put.rx.dropped.packets >= 0
+ANY http.commands.put.tx.dropped.bytes >= 0
+ANY http.commands.put.tx.dropped.packets >= 0
+ANY http.commands.put.rx.bytes == http.commands.put.rx.good.bytes + http.commands.put.rx.failed.bytes +  http.commands.put.rx.dropped.bytes
+ANY http.commands.put.rx.packets == http.commands.put.rx.good.packets + http.commands.put.rx.failed.packets +  http.commands.put.rx.dropped.packets
+ANY http.commands.put.tx.bytes == http.commands.put.tx.good.bytes + http.commands.put.tx.failed.bytes +  http.commands.put.tx.dropped.bytes
+ANY http.commands.put.tx.packets == http.commands.put.tx.good.packets + http.commands.put.tx.failed.packets +  http.commands.put.tx.dropped.packets
+ANY http.commands.put.errors_total >= 0
+ANY http.commands.put.verification.attempts >= 0
+ANY http.commands.put.verification.succeeds >= 0
+ANY http.commands.put.verification.fails >= 0
+ANY http.commands.put.verification.aborts >= 0
+ANY http.commands.put.verification.attempts >= http.commands.put.verification.succeeds + http.commands.put.verification.fails + http.commands.put.verification.aborts
+LAST http.commands.put.verification.attempts == http.commands.put.verification.succeeds + http.commands.put.verification.fails + http.commands.put.verification.aborts
+
+ANY http.commands.post.rx.bytes >= 0
+ANY http.commands.post.rx.packets >= 0
+ANY http.commands.post.tx.bytes >= 0
+ANY http.commands.post.tx.packets >= 0
+ANY http.commands.post.actions.attempts >= 0
+ANY http.commands.post.actions.succeeds >= 0
+ANY http.commands.post.actions.fails >= 0
+ANY http.commands.post.actions.aborts >= 0
+ANY http.commands.post.actions.attempts >= http.commands.post.actions.succeeds + http.commands.post.actions.fails + http.commands.post.actions.aborts
+LAST http.commands.post.actions.attempts == http.commands.post.actions.succeeds + http.commands.post.actions.fails + http.commands.post.actions.aborts
+ANY http.commands.post.time.count >= 0
+ANY http.commands.post.time.total >= 0
+ANY http.commands.post.time.min >= 0
+ANY http.commands.post.time.max >= 0
+ANY http.commands.post.time.max >= http.commands.post.time.min
+#ANY http.commands.post.actions.retries >= 0
+ANY http.commands.post.rx.good.bytes >= 0
+ANY http.commands.post.rx.good.packets >= 0
+ANY http.commands.post.tx.good.bytes >= 0
+ANY http.commands.post.tx.good.packets >= 0
+ANY http.commands.post.rx.failed.bytes >= 0
+ANY http.commands.post.rx.failed.packets >= 0
+ANY http.commands.post.tx.failed.bytes >= 0
+ANY http.commands.post.tx.failed.packets >= 0
+ANY http.commands.post.rx.dropped.bytes >= 0
+ANY http.commands.post.rx.dropped.packets >= 0
+ANY http.commands.post.tx.dropped.bytes >= 0
+ANY http.commands.post.tx.dropped.packets >= 0
+ANY http.commands.post.rx.bytes == http.commands.post.rx.good.bytes + http.commands.post.rx.failed.bytes +  http.commands.post.rx.dropped.bytes
+ANY http.commands.post.rx.packets == http.commands.post.rx.good.packets + http.commands.post.rx.failed.packets +  http.commands.post.rx.dropped.packets
+ANY http.commands.post.tx.bytes == http.commands.post.tx.good.bytes + http.commands.post.tx.failed.bytes +  http.commands.post.tx.dropped.bytes
+ANY http.commands.post.tx.packets == http.commands.post.tx.good.packets + http.commands.post.tx.failed.packets +  http.commands.post.tx.dropped.packets
+ANY http.commands.post.errors_total >= 0
+ANY http.commands.post.verification.attempts >= 0
+ANY http.commands.post.verification.succeeds >= 0
+ANY http.commands.post.verification.fails >= 0
+ANY http.commands.post.verification.aborts >= 0
+ANY http.commands.post.verification.attempts >= http.commands.post.verification.succeeds + http.commands.post.verification.fails + http.commands.post.verification.aborts
+LAST http.commands.post.verification.attempts == http.commands.post.verification.succeeds + http.commands.post.verification.fails + http.commands.post.verification.aborts
+
+ANY http.commands.delete.rx.bytes >= 0
+ANY http.commands.delete.rx.packets >= 0
+ANY http.commands.delete.tx.bytes >= 0
+ANY http.commands.delete.tx.packets >= 0
+ANY http.commands.delete.actions.attempts >= 0
+ANY http.commands.delete.actions.succeeds >= 0
+ANY http.commands.delete.actions.fails >= 0
+ANY http.commands.delete.actions.aborts >= 0
+ANY http.commands.delete.actions.attempts >= http.commands.delete.actions.succeeds + http.commands.delete.actions.fails + http.commands.delete.actions.aborts
+LAST http.commands.delete.actions.attempts == http.commands.delete.actions.succeeds + http.commands.delete.actions.fails + http.commands.delete.actions.aborts
+ANY http.commands.delete.time.count >= 0
+ANY http.commands.delete.time.total >= 0
+ANY http.commands.delete.time.min >= 0
+ANY http.commands.delete.time.max >= 0
+ANY http.commands.delete.time.max >= http.commands.delete.time.min
+#ANY http.commands.delete.actions.retries >= 0
+ANY http.commands.delete.rx.good.bytes >= 0
+ANY http.commands.delete.rx.good.packets >= 0
+ANY http.commands.delete.tx.good.bytes >= 0
+ANY http.commands.delete.tx.good.packets >= 0
+ANY http.commands.delete.rx.failed.bytes >= 0
+ANY http.commands.delete.rx.failed.packets >= 0
+ANY http.commands.delete.tx.failed.bytes >= 0
+ANY http.commands.delete.tx.failed.packets >= 0
+ANY http.commands.delete.rx.dropped.bytes >= 0
+ANY http.commands.delete.rx.dropped.packets >= 0
+ANY http.commands.delete.tx.dropped.bytes >= 0
+ANY http.commands.delete.tx.dropped.packets >= 0
+ANY http.commands.delete.rx.bytes == http.commands.delete.rx.good.bytes + http.commands.delete.rx.failed.bytes +  http.commands.delete.rx.dropped.bytes
+ANY http.commands.delete.rx.packets == http.commands.delete.rx.good.packets + http.commands.delete.rx.failed.packets +  http.commands.delete.rx.dropped.packets
+ANY http.commands.delete.tx.bytes == http.commands.delete.tx.good.bytes + http.commands.delete.tx.failed.bytes +  http.commands.delete.tx.dropped.bytes
+ANY http.commands.delete.tx.packets == http.commands.delete.tx.good.packets + http.commands.delete.tx.failed.packets +  http.commands.delete.tx.dropped.packets
+ANY http.commands.delete.errors_total >= 0
+ANY http.commands.delete.verification.attempts >= 0
+ANY http.commands.delete.verification.succeeds >= 0
+ANY http.commands.delete.verification.fails >= 0
+ANY http.commands.delete.verification.aborts >= 0
+ANY http.commands.delete.verification.attempts >= http.commands.delete.verification.succeeds + http.commands.delete.verification.fails + http.commands.delete.verification.aborts
+LAST http.commands.delete.verification.attempts == http.commands.delete.verification.succeeds + http.commands.delete.verification.fails + http.commands.delete.verification.aborts
+
+ANY http.commands.head.rx.bytes >= 0
+ANY http.commands.head.rx.packets >= 0
+ANY http.commands.head.tx.bytes >= 0
+ANY http.commands.head.tx.packets >= 0
+ANY http.commands.head.actions.attempts >= 0
+ANY http.commands.head.actions.succeeds >= 0
+ANY http.commands.head.actions.fails >= 0
+ANY http.commands.head.actions.aborts >= 0
+ANY http.commands.head.actions.attempts >= http.commands.head.actions.succeeds + http.commands.head.actions.fails + http.commands.head.actions.aborts
+LAST http.commands.head.actions.attempts == http.commands.head.actions.succeeds + http.commands.head.actions.fails + http.commands.head.actions.aborts
+ANY http.commands.head.time.count >= 0
+ANY http.commands.head.time.total >= 0
+ANY http.commands.head.time.min >= 0
+ANY http.commands.head.time.max >= 0
+ANY http.commands.head.time.max >= http.commands.head.time.min
+#ANY http.commands.head.actions.retries >= 0
+ANY http.commands.head.rx.good.bytes >= 0
+ANY http.commands.head.rx.good.packets >= 0
+ANY http.commands.head.tx.good.bytes >= 0
+ANY http.commands.head.tx.good.packets >= 0
+ANY http.commands.head.rx.failed.bytes >= 0
+ANY http.commands.head.rx.failed.packets >= 0
+ANY http.commands.head.tx.failed.bytes >= 0
+ANY http.commands.head.tx.failed.packets >= 0
+ANY http.commands.head.rx.dropped.bytes >= 0
+ANY http.commands.head.rx.dropped.packets >= 0
+ANY http.commands.head.tx.dropped.bytes >= 0
+ANY http.commands.head.tx.dropped.packets >= 0
+ANY http.commands.head.rx.bytes == http.commands.head.rx.good.bytes + http.commands.head.rx.failed.bytes +  http.commands.head.rx.dropped.bytes
+ANY http.commands.head.rx.packets == http.commands.head.rx.good.packets + http.commands.head.rx.failed.packets +  http.commands.head.rx.dropped.packets
+ANY http.commands.head.tx.bytes == http.commands.head.tx.good.bytes + http.commands.head.tx.failed.bytes +  http.commands.head.tx.dropped.bytes
+ANY http.commands.head.tx.packets == http.commands.head.tx.good.packets + http.commands.head.tx.failed.packets +  http.commands.head.tx.dropped.packets
+ANY http.commands.head.errors_total >= 0
+ANY http.commands.head.verification.attempts >= 0
+ANY http.commands.head.verification.succeeds >= 0
+ANY http.commands.head.verification.fails >= 0
+ANY http.commands.head.verification.aborts >= 0
+ANY http.commands.head.verification.attempts >= http.commands.head.verification.succeeds + http.commands.head.verification.fails + http.commands.head.verification.aborts
+LAST http.commands.head.verification.attempts == http.commands.head.verification.succeeds + http.commands.head.verification.fails + http.commands.head.verification.aborts
+
+ANY http.commands.options.rx.bytes >= 0
+ANY http.commands.options.rx.packets >= 0
+ANY http.commands.options.tx.bytes >= 0
+ANY http.commands.options.tx.packets >= 0
+ANY http.commands.options.actions.attempts >= 0
+ANY http.commands.options.actions.succeeds >= 0
+ANY http.commands.options.actions.fails >= 0
+ANY http.commands.options.actions.aborts >= 0
+ANY http.commands.options.actions.attempts >= http.commands.options.actions.succeeds + http.commands.options.actions.fails + http.commands.options.actions.aborts
+LAST http.commands.options.actions.attempts == http.commands.options.actions.succeeds + http.commands.options.actions.fails + http.commands.options.actions.aborts
+ANY http.commands.options.time.count >= 0
+ANY http.commands.options.time.total >= 0
+ANY http.commands.options.time.min >= 0
+ANY http.commands.options.time.max >= 0
+ANY http.commands.options.time.max >= http.commands.options.time.min
+#ANY http.commands.options.actions.retries >= 0
+ANY http.commands.options.rx.good.bytes >= 0
+ANY http.commands.options.rx.good.packets >= 0
+ANY http.commands.options.tx.good.bytes >= 0
+ANY http.commands.options.tx.good.packets >= 0
+ANY http.commands.options.rx.failed.bytes >= 0
+ANY http.commands.options.rx.failed.packets >= 0
+ANY http.commands.options.tx.failed.bytes >= 0
+ANY http.commands.options.tx.failed.packets >= 0
+ANY http.commands.options.rx.dropped.bytes >= 0
+ANY http.commands.options.rx.dropped.packets >= 0
+ANY http.commands.options.tx.dropped.bytes >= 0
+ANY http.commands.options.tx.dropped.packets >= 0
+ANY http.commands.options.rx.bytes == http.commands.options.rx.good.bytes + http.commands.options.rx.failed.bytes +  http.commands.options.rx.dropped.bytes
+ANY http.commands.options.rx.packets == http.commands.options.rx.good.packets + http.commands.options.rx.failed.packets +  http.commands.options.rx.dropped.packets
+ANY http.commands.options.tx.bytes == http.commands.options.tx.good.bytes + http.commands.options.tx.failed.bytes +  http.commands.options.tx.dropped.bytes
+ANY http.commands.options.tx.packets == http.commands.options.tx.good.packets + http.commands.options.tx.failed.packets +  http.commands.options.tx.dropped.packets
+ANY http.commands.options.errors_total >= 0
+ANY http.commands.options.verification.attempts >= 0
+ANY http.commands.options.verification.succeeds >= 0
+ANY http.commands.options.verification.fails >= 0
+ANY http.commands.options.verification.aborts >= 0
+ANY http.commands.options.verification.attempts >= http.commands.options.verification.succeeds + http.commands.options.verification.fails + http.commands.options.verification.aborts
+LAST http.commands.options.verification.attempts == http.commands.options.verification.succeeds + http.commands.options.verification.fails + http.commands.options.verification.aborts
+
+ANY http.commands.trace.rx.bytes >= 0
+ANY http.commands.trace.rx.packets >= 0
+ANY http.commands.trace.tx.bytes >= 0
+ANY http.commands.trace.tx.packets >= 0
+ANY http.commands.trace.actions.attempts >= 0
+ANY http.commands.trace.actions.succeeds >= 0
+ANY http.commands.trace.actions.fails >= 0
+ANY http.commands.trace.actions.aborts >= 0
+ANY http.commands.trace.actions.attempts >= http.commands.trace.actions.succeeds + http.commands.trace.actions.fails + http.commands.trace.actions.aborts
+LAST http.commands.trace.actions.attempts == http.commands.trace.actions.succeeds + http.commands.trace.actions.fails + http.commands.trace.actions.aborts
+ANY http.commands.trace.time.count >= 0
+ANY http.commands.trace.time.total >= 0
+ANY http.commands.trace.time.min >= 0
+ANY http.commands.trace.time.max >= 0
+ANY http.commands.trace.time.max >= http.commands.trace.time.min
+#ANY http.commands.trace.actions.retries >= 0
+ANY http.commands.trace.rx.good.bytes >= 0
+ANY http.commands.trace.rx.good.packets >= 0
+ANY http.commands.trace.tx.good.bytes >= 0
+ANY http.commands.trace.tx.good.packets >= 0
+ANY http.commands.trace.rx.failed.bytes >= 0
+ANY http.commands.trace.rx.failed.packets >= 0
+ANY http.commands.trace.tx.failed.bytes >= 0
+ANY http.commands.trace.tx.failed.packets >= 0
+ANY http.commands.trace.rx.dropped.bytes >= 0
+ANY http.commands.trace.rx.dropped.packets >= 0
+ANY http.commands.trace.tx.dropped.bytes >= 0
+ANY http.commands.trace.tx.dropped.packets >= 0
+ANY http.commands.trace.rx.bytes == http.commands.trace.rx.good.bytes + http.commands.trace.rx.failed.bytes +  http.commands.trace.rx.dropped.bytes
+ANY http.commands.trace.rx.packets == http.commands.trace.rx.good.packets + http.commands.trace.rx.failed.packets +  http.commands.trace.rx.dropped.packets
+ANY http.commands.trace.tx.bytes == http.commands.trace.tx.good.bytes + http.commands.trace.tx.failed.bytes +  http.commands.trace.tx.dropped.bytes
+ANY http.commands.trace.tx.packets == http.commands.trace.tx.good.packets + http.commands.trace.tx.failed.packets +  http.commands.trace.tx.dropped.packets
+ANY http.commands.trace.errors_total >= 0
+ANY http.commands.trace.verification.attempts >= 0
+ANY http.commands.trace.verification.succeeds >= 0
+ANY http.commands.trace.verification.fails >= 0
+ANY http.commands.trace.verification.aborts >= 0
+ANY http.commands.trace.verification.attempts >= http.commands.trace.verification.succeeds + http.commands.trace.verification.fails + http.commands.trace.verification.aborts
+LAST http.commands.trace.verification.attempts == http.commands.trace.verification.succeeds + http.commands.trace.verification.fails + http.commands.trace.verification.aborts
+
+ANY http.commands.connect.rx.bytes >= 0
+ANY http.commands.connect.rx.packets >= 0
+ANY http.commands.connect.tx.bytes >= 0
+ANY http.commands.connect.tx.packets >= 0
+ANY http.commands.connect.actions.attempts >= 0
+ANY http.commands.connect.actions.succeeds >= 0
+ANY http.commands.connect.actions.fails >= 0
+ANY http.commands.connect.actions.aborts >= 0
+ANY http.commands.connect.actions.attempts >= http.commands.connect.actions.succeeds + http.commands.connect.actions.fails + http.commands.connect.actions.aborts
+LAST http.commands.connect.actions.attempts == http.commands.connect.actions.succeeds + http.commands.connect.actions.fails + http.commands.connect.actions.aborts
+ANY http.commands.connect.time.count >= 0
+ANY http.commands.connect.time.total >= 0
+ANY http.commands.connect.time.min >= 0
+ANY http.commands.connect.time.max >= 0
+ANY http.commands.connect.time.max >= http.commands.connect.time.min
+#ANY http.commands.connect.actions.retries >= 0
+ANY http.commands.connect.rx.good.bytes >= 0
+ANY http.commands.connect.rx.good.packets >= 0
+ANY http.commands.connect.tx.good.bytes >= 0
+ANY http.commands.connect.tx.good.packets >= 0
+ANY http.commands.connect.rx.failed.bytes >= 0
+ANY http.commands.connect.rx.failed.packets >= 0
+ANY http.commands.connect.tx.failed.bytes >= 0
+ANY http.commands.connect.tx.failed.packets >= 0
+ANY http.commands.connect.rx.dropped.bytes >= 0
+ANY http.commands.connect.rx.dropped.packets >= 0
+ANY http.commands.connect.tx.dropped.bytes >= 0
+ANY http.commands.connect.tx.dropped.packets >= 0
+ANY http.commands.connect.rx.bytes == http.commands.connect.rx.good.bytes + http.commands.connect.rx.failed.bytes +  http.commands.connect.rx.dropped.bytes
+ANY http.commands.connect.rx.packets == http.commands.connect.rx.good.packets + http.commands.connect.rx.failed.packets +  http.commands.connect.rx.dropped.packets
+ANY http.commands.connect.tx.bytes == http.commands.connect.tx.good.bytes + http.commands.connect.tx.failed.bytes +  http.commands.connect.tx.dropped.bytes
+ANY http.commands.connect.tx.packets == http.commands.connect.tx.good.packets + http.commands.connect.tx.failed.packets +  http.commands.connect.tx.dropped.packets
+ANY http.commands.connect.errors_total >= 0
+ANY http.commands.connect.verification.attempts >= 0
+ANY http.commands.connect.verification.succeeds >= 0
+ANY http.commands.connect.verification.fails >= 0
+ANY http.commands.connect.verification.aborts >= 0
+ANY http.commands.connect.verification.attempts >= http.commands.connect.verification.succeeds + http.commands.connect.verification.fails + http.commands.connect.verification.aborts
+LAST http.commands.connect.verification.attempts == http.commands.connect.verification.succeeds + http.commands.connect.verification.fails + http.commands.connect.verification.aborts
+
+ANY http.commands.server_open.rx.bytes >= 0
+ANY http.commands.server_open.rx.packets >= 0
+ANY http.commands.server_open.tx.bytes >= 0
+ANY http.commands.server_open.tx.packets >= 0
+ANY http.commands.server_open.actions.attempts >= 0
+ANY http.commands.server_open.actions.succeeds >= 0
+ANY http.commands.server_open.actions.fails >= 0
+ANY http.commands.server_open.actions.aborts >= 0
+ANY http.commands.server_open.actions.attempts >= http.commands.server_open.actions.succeeds + http.commands.server_open.actions.fails + http.commands.server_open.actions.aborts
+LAST http.commands.server_open.actions.attempts == http.commands.server_open.actions.succeeds + http.commands.server_open.actions.fails + http.commands.server_open.actions.aborts
+ANY http.commands.server_open.time.count >= 0
+ANY http.commands.server_open.time.total >= 0
+ANY http.commands.server_open.time.min >= 0
+ANY http.commands.server_open.time.max >= 0
+ANY http.commands.server_open.time.max >= http.commands.server_open.time.min
+#ANY http.commands.server_open.actions.retries >= 0
+ANY http.commands.server_open.rx.good.bytes >= 0
+ANY http.commands.server_open.rx.good.packets >= 0
+ANY http.commands.server_open.tx.good.bytes >= 0
+ANY http.commands.server_open.tx.good.packets >= 0
+ANY http.commands.server_open.rx.failed.bytes >= 0
+ANY http.commands.server_open.rx.failed.packets >= 0
+ANY http.commands.server_open.tx.failed.bytes >= 0
+ANY http.commands.server_open.tx.failed.packets >= 0
+ANY http.commands.server_open.rx.dropped.bytes >= 0
+ANY http.commands.server_open.rx.dropped.packets >= 0
+ANY http.commands.server_open.tx.dropped.bytes >= 0
+ANY http.commands.server_open.tx.dropped.packets >= 0
+ANY http.commands.server_open.rx.bytes == http.commands.server_open.rx.good.bytes + http.commands.server_open.rx.failed.bytes +  http.commands.server_open.rx.dropped.bytes
+ANY http.commands.server_open.rx.packets == http.commands.server_open.rx.good.packets + http.commands.server_open.rx.failed.packets +  http.commands.server_open.rx.dropped.packets
+ANY http.commands.server_open.tx.bytes == http.commands.server_open.tx.good.bytes + http.commands.server_open.tx.failed.bytes +  http.commands.server_open.tx.dropped.bytes
+ANY http.commands.server_open.tx.packets == http.commands.server_open.tx.good.packets + http.commands.server_open.tx.failed.packets +  http.commands.server_open.tx.dropped.packets
+ANY http.commands.server_open.errors_total >= 0
+ANY http.commands.server_open.verification.attempts >= 0
+ANY http.commands.server_open.verification.succeeds >= 0
+ANY http.commands.server_open.verification.fails >= 0
+ANY http.commands.server_open.verification.aborts >= 0
+ANY http.commands.server_open.verification.attempts >= http.commands.server_open.verification.succeeds + http.commands.server_open.verification.fails + http.commands.server_open.verification.aborts
+LAST http.commands.server_open.verification.attempts == http.commands.server_open.verification.succeeds + http.commands.server_open.verification.fails + http.commands.server_open.verification.aborts
+
+ANY http.commands.server_close.rx.bytes == 0
+ANY http.commands.server_close.rx.packets == 0
+ANY http.commands.server_close.tx.bytes == 0
+ANY http.commands.server_close.tx.packets == 0
+ANY http.commands.server_close.actions.attempts == 0
+ANY http.commands.server_close.actions.succeeds == 0
+ANY http.commands.server_close.actions.fails == 0
+ANY http.commands.server_close.actions.aborts == 0
+ANY http.commands.server_close.time.count == 0
+ANY http.commands.server_close.time.total == 0
+ANY http.commands.server_close.time.min == 0
+ANY http.commands.server_close.time.max == 0
+#ANY http.commands.server_close.actions.retries == 0
+ANY http.commands.server_close.rx.good.bytes == 0
+ANY http.commands.server_close.rx.good.packets == 0
+ANY http.commands.server_close.tx.good.bytes == 0
+ANY http.commands.server_close.tx.good.packets == 0
+ANY http.commands.server_close.rx.failed.bytes == 0
+ANY http.commands.server_close.rx.failed.packets == 0
+ANY http.commands.server_close.tx.failed.bytes == 0
+ANY http.commands.server_close.tx.failed.packets == 0
+ANY http.commands.server_close.rx.dropped.bytes == 0
+ANY http.commands.server_close.rx.dropped.packets == 0
+ANY http.commands.server_close.tx.dropped.bytes == 0
+ANY http.commands.server_close.tx.dropped.packets == 0
+ANY http.commands.server_close.errors_total == 0
+ANY http.commands.server_close.verification.attempts == 0
+ANY http.commands.server_close.verification.succeeds == 0
+ANY http.commands.server_close.verification.fails == 0
+ANY http.commands.server_close.verification.aborts == 0
+
+ANY http.commands.client_abort.rx.bytes == 0
+ANY http.commands.client_abort.rx.packets == 0
+ANY http.commands.client_abort.tx.bytes == 0
+ANY http.commands.client_abort.tx.packets == 0
+ANY http.commands.client_abort.actions.attempts == 0
+ANY http.commands.client_abort.actions.succeeds == 0
+ANY http.commands.client_abort.actions.fails == 0
+ANY http.commands.client_abort.actions.aborts == 0
+ANY http.commands.client_abort.time.count == 0
+ANY http.commands.client_abort.time.total == 0
+ANY http.commands.client_abort.time.min == 0
+ANY http.commands.client_abort.time.max == 0
+#ANY http.commands.client_abort.actions.retries == 0
+ANY http.commands.client_abort.rx.good.bytes == 0
+ANY http.commands.client_abort.rx.good.packets == 0
+ANY http.commands.client_abort.tx.good.bytes == 0
+ANY http.commands.client_abort.tx.good.packets == 0
+ANY http.commands.client_abort.rx.failed.bytes == 0
+ANY http.commands.client_abort.rx.failed.packets == 0
+ANY http.commands.client_abort.tx.failed.bytes == 0
+ANY http.commands.client_abort.tx.failed.packets == 0
+ANY http.commands.client_abort.rx.dropped.bytes == 0
+ANY http.commands.client_abort.rx.dropped.packets == 0
+ANY http.commands.client_abort.tx.dropped.bytes == 0
+ANY http.commands.client_abort.tx.dropped.packets == 0
+ANY http.commands.client_abort.errors_total == 0
+ANY http.commands.client_abort.verification.attempts == 0
+ANY http.commands.client_abort.verification.succeeds == 0
+ANY http.commands.client_abort.verification.fails == 0
+ANY http.commands.client_abort.verification.aborts == 0
+
+#CDMI
+
+#AMAZON_S3
+
+#OpST-Swift
+
+#OpST-Cinder
+
+#OpST-Keystone
+
+#ISCSI
+
+#FC Network Status
+
+#FCoE Network Status
+
+#SCSI
+
+#FC_MPIO
+
+#FC reconnect
+
+#MSRPC2
+
+#MSRPC2 WksSvc
+
+#MSRPC2 SrvSvc
+
+#Load Status
+ANY load.actions.attempts >= 0
+ANY load.actions.succeeds >= 0
+ANY load.actions.fails >= 0
+ANY load.actions.aborts >= 0
+ANY load.actions.attempts >= load.actions.succeeds + load.actions.fails + load.actions.aborts
+LAST load.actions.attempts == load.actions.succeeds + load.actions.fails + load.actions.aborts
+ANY load.scenarios.attempts >= 0
+ANY load.scenarios.succeeds >= 0
+ANY load.scenarios.fails >= 0
+ANY load.scenarios.aborts >= 0
+ANY load.scenarios.attempts >= load.scenarios.succeeds + load.scenarios.fails + load.scenarios.aborts
+LAST load.scenarios.attempts == load.scenarios.succeeds + load.scenarios.fails + load.scenarios.aborts
+#load.type
+#load.desired
+#load.current
+ANY load.connections.attempts >= 0
+ANY load.connections.succeeds >= 0
+ANY load.connections.fails >= 0
+ANY load.connections.aborts >= 0
+ANY load.connections.attempts >= load.connections.succeeds + load.connections.fails + load.connections.aborts
+LAST load.connections.attempts == load.connections.succeeds + load.connections.fails + load.connections.aborts
+ANY load.actions.attempts >= load.scenarios.attempts
+
+#Network Status
+
+#Ethernet
+
+#ARP
+
+#IPv4
+
+#TCP
+
+#TCP State
+
+#TCP Flags
+
+#TCP Connections
+
+#ICMP
+
+#TCP Reconnects
+
+#IPv6
+
+#ICMPv6
+
+#Neighbor Discovery
+
+#SSL/TLS Payload
+
+#SSL/TLS State
+
+#SSL/TLS Connections
+
+#FC Sessions
+
+#HTTP Response Parsing
+
+#HTTP Authentications
+ANY httpa.time_count >= 0
+#ANY httpa.time_total_ns >= 0
+#ANY httpa.time_min_ns >= 0
+#ANY httpa.time_max_ns >= 0
+ANY httpa.time_total >= 0
+ANY httpa.time_min >= 0
+ANY httpa.time_max >= 0
+ANY httpa.attempted >= 0
+ANY httpa.passive >= 0
+ANY httpa.preemptive >= 0
+ANY cport.httpa.attempted == cport.httpa.passive + cport.httpa.preemptive
+ANY httpa.attempted >= httpa.ignored + httpa.succeeded + httpa.failed + httpa.aborted
+LAST httpa.attempted == httpa.ignored + httpa.succeeded + httpa.failed + httpa.aborted
+ANY httpa.ignored >= 0
+ANY httpa.succeeded >= 0
+ANY httpa.failed >= 0
+ANY httpa.credentials_denied >= 0
+ANY httpa.access_forbidden >= 0
+ANY httpa.server_error >= 0
+ANY httpa.reset_by_server >= 0
+ANY httpa.disabled_by_client >= 0
+ANY httpa.failed == httpa.credentials_denied + httpa.access_forbidden + httpa.server_error + httpa.reset_by_server + httpa.disabled_by_client
+ANY httpa.aborted >= 0
+ANY httpa.commands.basic.time_count >= 0
+#ANY httpa.commands.basic.time_total_ns >= 0
+#ANY httpa.commands.basic.time_min_ns >= 0
+#ANY httpa.commands.basic.time_max_ns >= 0
+ANY httpa.commands.basic.time_total >= 0
+ANY httpa.commands.basic.time_min >= 0
+ANY httpa.commands.basic.time_max >= 0
+ANY httpa.commands.basic.attempted >= 0
+ANY httpa.commands.basic.passive >= 0
+ANY httpa.commands.basic.preemptive >= 0
+ANY cport.httpa.commands.basic.attempted == cport.httpa.commands.basic.passive + cport.httpa.commands.basic.preemptive
+ANY httpa.commands.basic.attempted >= httpa.commands.basic.ignored + httpa.commands.basic.succeeded + httpa.commands.basic.failed + httpa.commands.basic.aborted
+LAST httpa.commands.basic.attempted == httpa.commands.basic.ignored + httpa.commands.basic.succeeded + httpa.commands.basic.failed + httpa.commands.basic.aborted
+ANY httpa.commands.basic.ignored >= 0
+ANY httpa.commands.basic.succeeded >= 0
+ANY httpa.commands.basic.failed >= 0
+ANY httpa.commands.basic.credentials_denied >= 0
+ANY httpa.commands.basic.access_forbidden >= 0
+ANY httpa.commands.basic.server_error >= 0
+ANY httpa.commands.basic.reset_by_server >= 0
+ANY httpa.commands.basic.disabled_by_client >= 0
+ANY httpa.commands.basic.failed == httpa.commands.basic.credentials_denied + httpa.commands.basic.access_forbidden + httpa.commands.basic.server_error + httpa.commands.basic.reset_by_server + httpa.commands.basic.disabled_by_client
+ANY httpa.commands.basic.aborted >= 0
+ANY httpa.commands.digest.time_count >= 0
+#ANY httpa.commands.digest.time_total_ns >= 0
+#ANY httpa.commands.digest.time_min_ns >= 0
+#ANY httpa.commands.digest.time_max_ns >= 0
+ANY httpa.commands.digest.time_total >= 0
+ANY httpa.commands.digest.time_min >= 0
+ANY httpa.commands.digest.time_max >= 0
+ANY httpa.commands.digest.attempted >= 0
+ANY httpa.commands.digest.passive >= 0
+ANY httpa.commands.digest.preemptive >= 0
+ANY cport.httpa.commands.digest.attempted == cport.httpa.commands.digest.passive + cport.httpa.commands.digest.preemptive
+ANY httpa.commands.digest.attempted >= httpa.commands.digest.ignored + httpa.commands.digest.succeeded + httpa.commands.digest.failed + httpa.commands.digest.aborted
+LAST httpa.commands.digest.attempted == httpa.commands.digest.ignored + httpa.commands.digest.succeeded + httpa.commands.digest.failed + httpa.commands.digest.aborted
+ANY httpa.commands.digest.ignored >= 0
+ANY httpa.commands.digest.succeeded >= 0
+ANY httpa.commands.digest.failed >= 0
+ANY httpa.commands.digest.credentials_denied >= 0
+ANY httpa.commands.digest.access_forbidden >= 0
+ANY httpa.commands.digest.server_error >= 0
+ANY httpa.commands.digest.reset_by_server >= 0
+ANY httpa.commands.digest.disabled_by_client >= 0
+ANY httpa.commands.digest.failed == httpa.commands.digest.credentials_denied + httpa.commands.digest.access_forbidden + httpa.commands.digest.server_error + httpa.commands.digest.reset_by_server + httpa.commands.digest.disabled_by_client
+ANY httpa.commands.digest.aborted >= 0
+ANY httpa.commands.amazon.time_count >= 0
+#ANY httpa.commands.amazon.time_total_ns >= 0
+#ANY httpa.commands.amazon.time_min_ns >= 0
+#ANY httpa.commands.amazon.time_max_ns >= 0
+ANY httpa.commands.amazon.time_total >= 0
+ANY httpa.commands.amazon.time_min >= 0
+ANY httpa.commands.amazon.time_max >= 0
+ANY httpa.commands.amazon.attempted >= 0
+ANY httpa.commands.amazon.passive >= 0
+ANY httpa.commands.amazon.preemptive >= 0
+ANY cport.httpa.commands.amazon.attempted == cport.httpa.commands.amazon.passive + cport.httpa.commands.amazon.preemptive
+ANY httpa.commands.amazon.attempted >= httpa.commands.amazon.ignored + httpa.commands.amazon.succeeded + httpa.commands.amazon.failed + httpa.commands.amazon.aborted
+LAST httpa.commands.amazon.attempted == httpa.commands.amazon.ignored + httpa.commands.amazon.succeeded + httpa.commands.amazon.failed + httpa.commands.amazon.aborted
+ANY httpa.commands.amazon.ignored >= 0
+ANY httpa.commands.amazon.succeeded >= 0
+ANY httpa.commands.amazon.failed >= 0
+ANY httpa.commands.amazon.credentials_denied >= 0
+ANY httpa.commands.amazon.access_forbidden >= 0
+ANY httpa.commands.amazon.server_error >= 0
+ANY httpa.commands.amazon.reset_by_server >= 0
+ANY httpa.commands.amazon.disabled_by_client >= 0
+ANY httpa.commands.amazon.failed == httpa.commands.amazon.credentials_denied + httpa.commands.amazon.access_forbidden + httpa.commands.amazon.server_error + httpa.commands.amazon.reset_by_server + httpa.commands.amazon.disabled_by_client
+ANY httpa.commands.amazon.aborted >= 0
+ANY httpa.commands.ntlm_ntlm.time_count >= 0
+#ANY httpa.commands.ntlm_ntlm.time_total_ns >= 0
+#ANY httpa.commands.ntlm_ntlm.time_min_ns >= 0
+#ANY httpa.commands.ntlm_ntlm.time_max_ns >= 0
+ANY httpa.commands.ntlm_ntlm.time_total >= 0
+ANY httpa.commands.ntlm_ntlm.time_min >= 0
+ANY httpa.commands.ntlm_ntlm.time_max >= 0
+ANY httpa.commands.ntlm_ntlm.attempted >= 0
+ANY httpa.commands.ntlm_ntlm.passive >= 0
+ANY httpa.commands.ntlm_ntlm.preemptive >= 0
+ANY cport.httpa.commands.ntlm_ntlm.attempted == cport.httpa.commands.ntlm_ntlm.passive + cport.httpa.commands.ntlm_ntlm.preemptive
+ANY httpa.commands.ntlm_ntlm.attempted >= httpa.commands.ntlm_ntlm.ignored + httpa.commands.ntlm_ntlm.succeeded + httpa.commands.ntlm_ntlm.failed + httpa.commands.ntlm_ntlm.aborted
+LAST httpa.commands.ntlm_ntlm.attempted == httpa.commands.ntlm_ntlm.ignored + httpa.commands.ntlm_ntlm.succeeded + httpa.commands.ntlm_ntlm.failed + httpa.commands.ntlm_ntlm.aborted
+ANY httpa.commands.ntlm_ntlm.ignored >= 0
+ANY httpa.commands.ntlm_ntlm.succeeded >= 0
+ANY httpa.commands.ntlm_ntlm.failed >= 0
+ANY httpa.commands.ntlm_ntlm.credentials_denied >= 0
+ANY httpa.commands.ntlm_ntlm.access_forbidden >= 0
+ANY httpa.commands.ntlm_ntlm.server_error >= 0
+ANY httpa.commands.ntlm_ntlm.reset_by_server >= 0
+ANY httpa.commands.ntlm_ntlm.disabled_by_client >= 0
+ANY httpa.commands.ntlm_ntlm.failed == httpa.commands.ntlm_ntlm.credentials_denied + httpa.commands.ntlm_ntlm.access_forbidden + httpa.commands.ntlm_ntlm.server_error + httpa.commands.ntlm_ntlm.reset_by_server + httpa.commands.ntlm_ntlm.disabled_by_client
+ANY httpa.commands.ntlm_ntlm.aborted >= 0
+ANY httpa.commands.negotiate_ntlm.time_count >= 0
+#ANY httpa.commands.negotiate_ntlm.time_total_ns >= 0
+#ANY httpa.commands.negotiate_ntlm.time_min_ns >= 0
+#ANY httpa.commands.negotiate_ntlm.time_max_ns >= 0
+ANY httpa.commands.negotiate_ntlm.time_total >= 0
+ANY httpa.commands.negotiate_ntlm.time_min >= 0
+ANY httpa.commands.negotiate_ntlm.time_max >= 0
+ANY httpa.commands.negotiate_ntlm.attempted >= 0
+ANY httpa.commands.negotiate_ntlm.passive >= 0
+ANY httpa.commands.negotiate_ntlm.preemptive >= 0
+ANY cport.httpa.commands.negotiate_ntlm.attempted == cport.httpa.commands.negotiate_ntlm.passive + cport.httpa.commands.negotiate_ntlm.preemptive
+ANY httpa.commands.negotiate_ntlm.attempted >= httpa.commands.negotiate_ntlm.ignored + httpa.commands.negotiate_ntlm.succeeded + httpa.commands.negotiate_ntlm.failed + httpa.commands.negotiate_ntlm.aborted
+LAST httpa.commands.negotiate_ntlm.attempted == httpa.commands.negotiate_ntlm.ignored + httpa.commands.negotiate_ntlm.succeeded + httpa.commands.negotiate_ntlm.failed + httpa.commands.negotiate_ntlm.aborted
+ANY httpa.commands.negotiate_ntlm.ignored >= 0
+ANY httpa.commands.negotiate_ntlm.succeeded >= 0
+ANY httpa.commands.negotiate_ntlm.failed >= 0
+ANY httpa.commands.negotiate_ntlm.credentials_denied >= 0
+ANY httpa.commands.negotiate_ntlm.access_forbidden >= 0
+ANY httpa.commands.negotiate_ntlm.server_error >= 0
+ANY httpa.commands.negotiate_ntlm.reset_by_server >= 0
+ANY httpa.commands.negotiate_ntlm.disabled_by_client >= 0
+ANY httpa.commands.negotiate_ntlm.failed == httpa.commands.negotiate_ntlm.credentials_denied + httpa.commands.negotiate_ntlm.access_forbidden + httpa.commands.negotiate_ntlm.server_error + httpa.commands.negotiate_ntlm.reset_by_server + httpa.commands.negotiate_ntlm.disabled_by_client
+ANY httpa.commands.negotiate_ntlm.aborted >= 0
+ANY httpa.commands.negotiate_kerberos.time_count >= 0
+#ANY httpa.commands.negotiate_kerberos.time_total_ns >= 0
+#ANY httpa.commands.negotiate_kerberos.time_min_ns >= 0
+#ANY httpa.commands.negotiate_kerberos.time_max_ns >= 0
+ANY httpa.commands.negotiate_kerberos.time_total >= 0
+ANY httpa.commands.negotiate_kerberos.time_min >= 0
+ANY httpa.commands.negotiate_kerberos.time_max >= 0
+ANY httpa.commands.negotiate_kerberos.attempted >= 0
+ANY httpa.commands.negotiate_kerberos.passive >= 0
+ANY httpa.commands.negotiate_kerberos.preemptive >= 0
+ANY cport.httpa.commands.negotiate_kerberos.attempted == cport.httpa.commands.negotiate_kerberos.passive + cport.httpa.commands.negotiate_kerberos.preemptive
+ANY httpa.commands.negotiate_kerberos.attempted >= httpa.commands.negotiate_kerberos.ignored + httpa.commands.negotiate_kerberos.succeeded + httpa.commands.negotiate_kerberos.failed + httpa.commands.negotiate_kerberos.aborted
+LAST httpa.commands.negotiate_kerberos.attempted == httpa.commands.negotiate_kerberos.ignored + httpa.commands.negotiate_kerberos.succeeded + httpa.commands.negotiate_kerberos.failed + httpa.commands.negotiate_kerberos.aborted
+ANY httpa.commands.negotiate_kerberos.ignored >= 0
+ANY httpa.commands.negotiate_kerberos.succeeded >= 0
+ANY httpa.commands.negotiate_kerberos.failed >= 0
+ANY httpa.commands.negotiate_kerberos.credentials_denied >= 0
+ANY httpa.commands.negotiate_kerberos.access_forbidden >= 0
+ANY httpa.commands.negotiate_kerberos.server_error >= 0
+ANY httpa.commands.negotiate_kerberos.reset_by_server >= 0
+ANY httpa.commands.negotiate_kerberos.disabled_by_client >= 0
+ANY httpa.commands.negotiate_kerberos.failed == httpa.commands.negotiate_kerberos.credentials_denied + httpa.commands.negotiate_kerberos.access_forbidden + httpa.commands.negotiate_kerberos.server_error + httpa.commands.negotiate_kerberos.reset_by_server + httpa.commands.negotiate_kerberos.disabled_by_client
+ANY httpa.commands.negotiate_kerberos.aborted >= 0
+ANY httpa.commands.negotiate_ntlm_kerberos.time_count >= 0
+#ANY httpa.commands.negotiate_ntlm_kerberos.time_total_ns >= 0
+#ANY httpa.commands.negotiate_ntlm_kerberos.time_min_ns >= 0
+#ANY httpa.commands.negotiate_ntlm_kerberos.time_max_ns >= 0
+ANY httpa.commands.negotiate_ntlm_kerberos.time_total >= 0
+ANY httpa.commands.negotiate_ntlm_kerberos.time_min >= 0
+ANY httpa.commands.negotiate_ntlm_kerberos.time_max >= 0
+ANY httpa.commands.negotiate_ntlm_kerberos.attempted >= 0
+ANY httpa.commands.negotiate_ntlm_kerberos.passive >= 0
+ANY httpa.commands.negotiate_ntlm_kerberos.preemptive >= 0
+ANY cport.httpa.commands.negotiate_ntlm_kerberos.attempted == cport.httpa.commands.negotiate_ntlm_kerberos.passive + cport.httpa.commands.negotiate_ntlm_kerberos.preemptive
+ANY httpa.commands.negotiate_ntlm_kerberos.attempted >= httpa.commands.negotiate_ntlm_kerberos.ignored + httpa.commands.negotiate_ntlm_kerberos.succeeded + httpa.commands.negotiate_ntlm_kerberos.failed + httpa.commands.negotiate_ntlm_kerberos.aborted
+LAST httpa.commands.negotiate_ntlm_kerberos.attempted == httpa.commands.negotiate_ntlm_kerberos.ignored + httpa.commands.negotiate_ntlm_kerberos.succeeded + httpa.commands.negotiate_ntlm_kerberos.failed + httpa.commands.negotiate_ntlm_kerberos.aborted
+ANY httpa.commands.negotiate_ntlm_kerberos.ignored >= 0
+ANY httpa.commands.negotiate_ntlm_kerberos.succeeded >= 0
+ANY httpa.commands.negotiate_ntlm_kerberos.failed >= 0
+ANY httpa.commands.negotiate_ntlm_kerberos.credentials_denied >= 0
+ANY httpa.commands.negotiate_ntlm_kerberos.access_forbidden >= 0
+ANY httpa.commands.negotiate_ntlm_kerberos.server_error >= 0
+ANY httpa.commands.negotiate_ntlm_kerberos.reset_by_server >= 0
+ANY httpa.commands.negotiate_ntlm_kerberos.disabled_by_client >= 0
+ANY httpa.commands.negotiate_ntlm_kerberos.failed == httpa.commands.negotiate_ntlm_kerberos.credentials_denied + httpa.commands.negotiate_ntlm_kerberos.access_forbidden + httpa.commands.negotiate_ntlm_kerberos.server_error + httpa.commands.negotiate_ntlm_kerberos.reset_by_server + httpa.commands.negotiate_ntlm_kerberos.disabled_by_client
+ANY httpa.commands.negotiate_ntlm_kerberos.aborted >= 0
+ANY httpa.commands.negotiate_kerberos_ntlm.time_count >= 0
+#ANY httpa.commands.negotiate_kerberos_ntlm.time_total_ns >= 0
+#ANY httpa.commands.negotiate_kerberos_ntlm.time_min_ns >= 0
+#ANY httpa.commands.negotiate_kerberos_ntlm.time_max_ns >= 0
+ANY httpa.commands.negotiate_kerberos_ntlm.time_total >= 0
+ANY httpa.commands.negotiate_kerberos_ntlm.time_min >= 0
+ANY httpa.commands.negotiate_kerberos_ntlm.time_max >= 0
+ANY httpa.commands.negotiate_kerberos_ntlm.attempted >= 0
+ANY httpa.commands.negotiate_kerberos_ntlm.passive >= 0
+ANY httpa.commands.negotiate_kerberos_ntlm.preemptive >= 0
+ANY cport.httpa.commands.negotiate_kerberos_ntlm.attempted == cport.httpa.commands.negotiate_kerberos_ntlm.passive + cport.httpa.commands.negotiate_kerberos_ntlm.preemptive
+ANY httpa.commands.negotiate_kerberos_ntlm.attempted >= httpa.commands.negotiate_kerberos_ntlm.ignored + httpa.commands.negotiate_kerberos_ntlm.succeeded + httpa.commands.negotiate_kerberos_ntlm.failed + httpa.commands.negotiate_kerberos_ntlm.aborted
+LAST httpa.commands.negotiate_kerberos_ntlm.attempted == httpa.commands.negotiate_kerberos_ntlm.ignored + httpa.commands.negotiate_kerberos_ntlm.succeeded + httpa.commands.negotiate_kerberos_ntlm.failed + httpa.commands.negotiate_kerberos_ntlm.aborted
+ANY httpa.commands.negotiate_kerberos_ntlm.ignored >= 0
+ANY httpa.commands.negotiate_kerberos_ntlm.succeeded >= 0
+ANY httpa.commands.negotiate_kerberos_ntlm.failed >= 0
+ANY httpa.commands.negotiate_kerberos_ntlm.credentials_denied >= 0
+ANY httpa.commands.negotiate_kerberos_ntlm.access_forbidden >= 0
+ANY httpa.commands.negotiate_kerberos_ntlm.server_error >= 0
+ANY httpa.commands.negotiate_kerberos_ntlm.reset_by_server >= 0
+ANY httpa.commands.negotiate_kerberos_ntlm.disabled_by_client >= 0
+ANY httpa.commands.negotiate_kerberos_ntlm.failed == httpa.commands.negotiate_kerberos_ntlm.credentials_denied + httpa.commands.negotiate_kerberos_ntlm.access_forbidden + httpa.commands.negotiate_kerberos_ntlm.server_error + httpa.commands.negotiate_kerberos_ntlm.reset_by_server + httpa.commands.negotiate_kerberos_ntlm.disabled_by_client
+ANY httpa.commands.negotiate_kerberos_ntlm.aborted >= 0
+ANY httpa.commands.aws2.time_count >= 0
+#ANY httpa.commands.aws2.time_total_ns >= 0
+#ANY httpa.commands.aws2.time_min_ns >= 0
+#ANY httpa.commands.aws2.time_max_ns >= 0
+ANY httpa.commands.aws2.time_total >= 0
+ANY httpa.commands.aws2.time_min >= 0
+ANY httpa.commands.aws2.time_max >= 0
+ANY httpa.commands.aws2.attempted >= 0
+ANY httpa.commands.aws2.passive >= 0
+ANY httpa.commands.aws2.preemptive >= 0
+ANY cport.httpa.commands.aws2.attempted == cport.httpa.commands.aws2.passive + cport.httpa.commands.aws2.preemptive
+ANY httpa.commands.aws2.attempted >= httpa.commands.aws2.ignored + httpa.commands.aws2.succeeded + httpa.commands.aws2.failed + httpa.commands.aws2.aborted
+LAST httpa.commands.aws2.attempted == httpa.commands.aws2.ignored + httpa.commands.aws2.succeeded + httpa.commands.aws2.failed + httpa.commands.aws2.aborted
+ANY httpa.commands.aws2.ignored >= 0
+ANY httpa.commands.aws2.succeeded >= 0
+ANY httpa.commands.aws2.failed >= 0
+ANY httpa.commands.aws2.credentials_denied >= 0
+ANY httpa.commands.aws2.access_forbidden >= 0
+ANY httpa.commands.aws2.server_error >= 0
+ANY httpa.commands.aws2.reset_by_server >= 0
+ANY httpa.commands.aws2.disabled_by_client >= 0
+ANY httpa.commands.aws2.failed == httpa.commands.aws2.credentials_denied + httpa.commands.aws2.access_forbidden + httpa.commands.aws2.server_error + httpa.commands.aws2.reset_by_server + httpa.commands.aws2.disabled_by_client
+ANY httpa.commands.aws2.aborted >= 0
+ANY httpa.commands.aws4.time_count >= 0
+#ANY httpa.commands.aws4.time_total_ns >= 0
+#ANY httpa.commands.aws4.time_min_ns >= 0
+#ANY httpa.commands.aws4.time_max_ns >= 0
+ANY httpa.commands.aws4.time_total >= 0
+ANY httpa.commands.aws4.time_min >= 0
+ANY httpa.commands.aws4.time_max >= 0
+ANY httpa.commands.aws4.attempted >= 0
+ANY httpa.commands.aws4.passive >= 0
+ANY httpa.commands.aws4.preemptive >= 0
+ANY cport.httpa.commands.aws4.attempted == cport.httpa.commands.aws4.passive + cport.httpa.commands.aws4.preemptive
+ANY httpa.commands.aws4.attempted >= httpa.commands.aws4.ignored + httpa.commands.aws4.succeeded + httpa.commands.aws4.failed + httpa.commands.aws4.aborted
+LAST httpa.commands.aws4.attempted == httpa.commands.aws4.ignored + httpa.commands.aws4.succeeded + httpa.commands.aws4.failed + httpa.commands.aws4.aborted
+ANY httpa.commands.aws4.ignored >= 0
+ANY httpa.commands.aws4.succeeded >= 0
+ANY httpa.commands.aws4.failed >= 0
+ANY httpa.commands.aws4.credentials_denied >= 0
+ANY httpa.commands.aws4.access_forbidden >= 0
+ANY httpa.commands.aws4.server_error >= 0
+ANY httpa.commands.aws4.reset_by_server >= 0
+ANY httpa.commands.aws4.disabled_by_client >= 0
+ANY httpa.commands.aws4.failed == httpa.commands.aws4.credentials_denied + httpa.commands.aws4.access_forbidden + httpa.commands.aws4.server_error + httpa.commands.aws4.reset_by_server + httpa.commands.aws4.disabled_by_client
+ANY httpa.commands.aws4.aborted >= 0
+ANY httpa.attempted == httpa.commands.basic.attempted + httpa.commands.digest.attempted + httpa.commands.amazon.attempted + httpa.commands.ntlm_ntlm.attempted + httpa.commands.negotiate_ntlm.attempted + httpa.commands.negotiate_kerberos.attempted + httpa.commands.negotiate_ntlm_kerberos.attempted + httpa.commands.negotiate_kerberos_ntlm.attempted + httpa.commands.aws2.attempted + httpa.commands.aws4.attempted
+ANY httpa.passive == httpa.commands.basic.passive + httpa.commands.digest.passive + httpa.commands.amazon.passive + httpa.commands.ntlm_ntlm.passive + httpa.commands.negotiate_ntlm.passive + httpa.commands.negotiate_kerberos.passive + httpa.commands.negotiate_ntlm_kerberos.passive + httpa.commands.negotiate_kerberos_ntlm.passive + httpa.commands.aws2.passive + httpa.commands.aws4.passive
+ANY httpa.preemptive == httpa.commands.basic.preemptive + httpa.commands.digest.preemptive + httpa.commands.amazon.preemptive + httpa.commands.ntlm_ntlm.preemptive + httpa.commands.negotiate_ntlm.preemptive + httpa.commands.negotiate_kerberos.preemptive + httpa.commands.negotiate_ntlm_kerberos.preemptive + httpa.commands.negotiate_kerberos_ntlm.preemptive + httpa.commands.aws2.preemptive + httpa.commands.aws4.preemptive
+ANY httpa.ignored == httpa.commands.basic.ignored + httpa.commands.digest.ignored + httpa.commands.amazon.ignored + httpa.commands.ntlm_ntlm.ignored + httpa.commands.negotiate_ntlm.ignored + httpa.commands.negotiate_kerberos.ignored + httpa.commands.negotiate_ntlm_kerberos.ignored + httpa.commands.negotiate_kerberos_ntlm.ignored + httpa.commands.aws2.ignored + httpa.commands.aws4.ignored
+ANY httpa.succeeded == httpa.commands.basic.succeeded + httpa.commands.digest.succeeded + httpa.commands.amazon.succeeded + httpa.commands.ntlm_ntlm.succeeded + httpa.commands.negotiate_ntlm.succeeded + httpa.commands.negotiate_kerberos.succeeded + httpa.commands.negotiate_ntlm_kerberos.succeeded + httpa.commands.negotiate_kerberos_ntlm.succeeded + httpa.commands.aws2.succeeded + httpa.commands.aws4.succeeded
+ANY httpa.failed == httpa.commands.basic.failed + httpa.commands.digest.failed + httpa.commands.amazon.failed + httpa.commands.ntlm_ntlm.failed + httpa.commands.negotiate_ntlm.failed + httpa.commands.negotiate_kerberos.failed + httpa.commands.negotiate_ntlm_kerberos.failed + httpa.commands.negotiate_kerberos_ntlm.failed + httpa.commands.aws2.failed + httpa.commands.aws4.failed
+ANY httpa.credentials_denied == httpa.commands.basic.credentials_denied + httpa.commands.digest.credentials_denied + httpa.commands.amazon.credentials_denied + httpa.commands.ntlm_ntlm.credentials_denied + httpa.commands.negotiate_ntlm.credentials_denied + httpa.commands.negotiate_kerberos.credentials_denied + httpa.commands.negotiate_ntlm_kerberos.credentials_denied + httpa.commands.negotiate_kerberos_ntlm.credentials_denied + httpa.commands.aws2.credentials_denied + httpa.commands.aws4.credentials_denied
+ANY httpa.access_forbidden == httpa.commands.basic.access_forbidden + httpa.commands.digest.access_forbidden + httpa.commands.amazon.access_forbidden + httpa.commands.ntlm_ntlm.access_forbidden + httpa.commands.negotiate_ntlm.access_forbidden + httpa.commands.negotiate_kerberos.access_forbidden + httpa.commands.negotiate_ntlm_kerberos.access_forbidden + httpa.commands.negotiate_kerberos_ntlm.access_forbidden + httpa.commands.aws2.access_forbidden + httpa.commands.aws4.access_forbidden
+ANY httpa.server_error == httpa.commands.basic.server_error + httpa.commands.digest.server_error + httpa.commands.amazon.server_error + httpa.commands.ntlm_ntlm.server_error + httpa.commands.negotiate_ntlm.server_error + httpa.commands.negotiate_kerberos.server_error + httpa.commands.negotiate_ntlm_kerberos.server_error + httpa.commands.negotiate_kerberos_ntlm.server_error + httpa.commands.aws2.server_error + httpa.commands.aws4.server_error
+ANY httpa.reset_by_server == httpa.commands.basic.reset_by_server + httpa.commands.digest.reset_by_server + httpa.commands.amazon.reset_by_server + httpa.commands.ntlm_ntlm.reset_by_server + httpa.commands.negotiate_ntlm.reset_by_server + httpa.commands.negotiate_kerberos.reset_by_server + httpa.commands.negotiate_ntlm_kerberos.reset_by_server + httpa.commands.negotiate_kerberos_ntlm.reset_by_server + httpa.commands.aws2.reset_by_server + httpa.commands.aws4.reset_by_server
+ANY httpa.disabled_by_client == httpa.commands.basic.disabled_by_client + httpa.commands.digest.disabled_by_client + httpa.commands.amazon.disabled_by_client + httpa.commands.ntlm_ntlm.disabled_by_client + httpa.commands.negotiate_ntlm.disabled_by_client + httpa.commands.negotiate_kerberos.disabled_by_client + httpa.commands.negotiate_ntlm_kerberos.disabled_by_client + httpa.commands.negotiate_kerberos_ntlm.disabled_by_client + httpa.commands.aws2.disabled_by_client + httpa.commands.aws4.disabled_by_client
+ANY httpa.aborted == httpa.commands.basic.aborted + httpa.commands.digest.aborted + httpa.commands.amazon.aborted + httpa.commands.ntlm_ntlm.aborted + httpa.commands.negotiate_ntlm.aborted + httpa.commands.negotiate_kerberos.aborted + httpa.commands.negotiate_ntlm_kerberos.aborted + httpa.commands.negotiate_kerberos_ntlm.aborted + httpa.commands.aws2.aborted + httpa.commands.aws4.aborted
+
+#DCBX
+
+#ETHPFC
+
+#HTTP Encoding
+
+#HTTP Redirect
+
+#DNS Transport
+
+#DNS Resolution
+
+#DNS Query
+
+#TCP
+
+#TCP State
+
+#TCP Flags
+
+#TCP Connections - obsoleted
+#ANY tcpconns.attempts >= 0
+#ANY tcpconns.opened >= 0
+#ANY tcpconns.closed >= 0
+#ANY tcpconns.reset >= 0
+#ANY tcpconns.failed >= 0
+#ANY tcpconns.open_timeout >= 0
+#ANY tcpconns.data_timeout >= 0
+#ANY tcpconns.rejected >= 0
+#ANY tcpconns.idle_timeout >= 0
+#ANY tcpconns.rst_on_syn >= 0
+#ANY tcpconns.to_unresolved_ip >= 0
+#ANY tcpconns.syn_timeout >= 0
+#ANY tcpconns.rst_drop >= 0
+#ANY tcpconns.attempts >= tcpconns.opened + tcpconns.rejected
+#LAST tcpconns.attempts == tcpconns.opened + tcpconns.rejected
+#ANY tcpconns.opened >= tcpconns.failed + tcpconns.closed
+#LAST tcpconns.opened == tcpconns.failed + tcpconns.closed
+#ANY tcpconns.failed >= tcpconns.reset + tcpconns.data_timeout + tcpconns.idle_timeout
+#LAST tcpconns.failed == tcpconns.reset + tcpconns.data_timeout + tcpconns.idle_timeout
+
+#ANY tcpconns.total_time_count >= 0
+#ANY tcpconns.total_time_total >= 0
+#ANY tcpconns.total_time_min >= 0
+#ANY tcpconns.total_time_max >= 0
+#ANY tcpconns.open_time_count >= 0
+#ANY tcpconns.open_time_total >= 0
+#ANY tcpconns.open_time_min >= 0
+#ANY tcpconns.open_time_max >= 0
+#ANY tcpconns.exit_time_count >= 0
+#ANY tcpconns.exit_time_total >= 0
+#ANY tcpconns.exit_time_min >= 0
+#ANY tcpconns.exit_time_max >= 0
+
+#ICMP
+
+#TCP Reconnects
+
+#TCP Connections Summary
+ANY tcpconnsum.attempts >= 0
+ANY tcpconnsum.opened >= 0
+ANY tcpconnsum.closed >= 0
+ANY tcpconnsum.reset >= 0
+ANY tcpconnsum.failed >= 0
+ANY tcpconnsum.open_timeout >= 0
+ANY tcpconnsum.data_timeout >= 0
+#ANY tcpconnsum.rejected >= 0
+ANY tcpconnsum.inact_timeout >= 0
+ANY tcpconnsum.syn_rejected >= 0
+ANY tcpconnsum.res_mac_failed >= 0
+ANY tcpconnsum.syn_timeout >= 0
+ANY tcpconnsum.rst_drop >= 0
+ANY tcpconnsum.total_time_count >= 0
+ANY tcpconnsum.total_time_total >= 0
+ANY tcpconnsum.total_time_min >= 0
+ANY tcpconnsum.total_time_max >= 0
+ANY tcpconnsum.open_time_count >= 0
+ANY tcpconnsum.open_time_total >= 0
+ANY tcpconnsum.open_time_min >= 0
+ANY tcpconnsum.open_time_max >= 0
+ANY tcpconnsum.exit_time_count >= 0
+ANY tcpconnsum.exit_time_total >= 0
+ANY tcpconnsum.exit_time_min >= 0
+ANY tcpconnsum.exit_time_max >= 0
+ANY tcpconnsum.res_ip_attempted >= 0
+ANY tcpconnsum.res_ip_succeeded >= 0
+ANY tcpconnsum.res_ip_failed >= 0
+ANY tcpconnsum.res_mac_attempted >= 0
+ANY tcpconnsum.res_mac_succeeded >= 0
+ANY tcpconnsum.syn_attempted >= 0
+ANY tcpconnsum.open_failed >= 0
+ANY tcpconnsum.sack_attempted >= 0
+ANY tcpconnsum.sack_negotiated >= 0
+ANY tcpconnsum.attempts >= tcpconnsum.syn_attempted
+LAST tcpconnsum.attempts == tcpconnsum.syn_attempted
+ANY tcpconnsum.attempts >= tcpconnsum.opened + tcpconnsum.open_failed
+LAST tcpconnsum.attempts == tcpconnsum.opened + tcpconnsum.open_failed
+ANY tcpconnsum.opened >= tcpconnsum.closed + tcpconnsum.failed
+LAST tcpconnsum.opened == tcpconnsum.closed + tcpconnsum.failed
+ANY tcpconnsum.failed == tcpconnsum.reset + tcpconnsum.data_timeout + tcpconnsum.inact_timeout
+ANY tcpconnsum.res_mac_attempted >= tcpconnsum.res_mac_succeeded + tcpconnsum.res_mac_failed
+LAST tcpconnsum.res_mac_attempted == tcpconnsum.res_mac_succeeded + tcpconnsum.res_mac_failed
+ANY tcpconnsum.res_ip_attempted >= tcpconnsum.res_ip_succeeded + tcpconnsum.res_ip_failed
+LAST tcpconnsum.res_ip_attempted == tcpconnsum.res_ip_succeeded + tcpconnsum.res_ip_failed
+ANY tcpconnsum.sack_attempted >= tcpconnsum.sack_negotiated
+
+ANY tcpconnsum.attempts == tcpconnsum.commands.ipv4.attempts + tcpconnsum.commands.ipv6.attempts
+ANY tcpconnsum.opened == tcpconnsum.commands.ipv4.opened + tcpconnsum.commands.ipv6.opened
+ANY tcpconnsum.closed == tcpconnsum.commands.ipv4.closed + tcpconnsum.commands.ipv6.closed
+ANY tcpconnsum.reset == tcpconnsum.commands.ipv4.reset + tcpconnsum.commands.ipv6.reset
+ANY tcpconnsum.failed == tcpconnsum.commands.ipv4.failed + tcpconnsum.commands.ipv6.failed
+ANY tcpconnsum.open_timeout == tcpconnsum.commands.ipv4.open_timeout + tcpconnsum.commands.ipv6.open_timeout
+ANY tcpconnsum.data_timeout == tcpconnsum.commands.ipv4.data_timeout + tcpconnsum.commands.ipv6.data_timeout
+#ANY tcpconnsum.rejected == tcpconnsum.commands.ipv4.rejected + tcpconnsum.commands.ipv6.rejected
+ANY tcpconnsum.inact_timeout == tcpconnsum.commands.ipv4.inact_timeout + tcpconnsum.commands.ipv6.inact_timeout
+ANY tcpconnsum.syn_rejected == tcpconnsum.commands.ipv4.syn_rejected + tcpconnsum.commands.ipv6.syn_rejected
+ANY tcpconnsum.syn_timeout == tcpconnsum.commands.ipv4.syn_timeout + tcpconnsum.commands.ipv6.syn_timeout
+ANY tcpconnsum.rst_drop == tcpconnsum.commands.ipv4.rst_drop + tcpconnsum.commands.ipv6.rst_drop
+ANY tcpconnsum.res_mac_attempted == tcpconnsum.commands.ipv4.res_mac_attempted + tcpconnsum.commands.ipv6.res_mac_attempted
+ANY tcpconnsum.res_mac_succeeded == tcpconnsum.commands.ipv4.res_mac_succeeded + tcpconnsum.commands.ipv6.res_mac_succeeded
+ANY tcpconnsum.res_mac_failed == tcpconnsum.commands.ipv4.res_mac_failed + tcpconnsum.commands.ipv6.res_mac_failed
+ANY tcpconnsum.syn_attempted == tcpconnsum.commands.ipv4.syn_attempted + tcpconnsum.commands.ipv6.syn_attempted
+ANY tcpconnsum.open_failed == tcpconnsum.commands.ipv4.open_failed + tcpconnsum.commands.ipv6.open_failed
+ANY tcpconnsum.sack_attempted == tcpconnsum.commands.ipv4.sack_attempted + tcpconnsum.commands.ipv6.sack_attempted
+ANY tcpconnsum.sack_negotiated == tcpconnsum.commands.ipv4.sack_negotiated + tcpconnsum.commands.ipv6.sack_negotiated
+
+ANY tcpconnsum.commands.ipv4.attempts >= 0
+ANY tcpconnsum.commands.ipv4.opened >= 0
+ANY tcpconnsum.commands.ipv4.closed >= 0
+ANY tcpconnsum.commands.ipv4.reset >= 0
+ANY tcpconnsum.commands.ipv4.failed >= 0
+ANY tcpconnsum.commands.ipv4.open_timeout >= 0
+ANY tcpconnsum.commands.ipv4.data_timeout >= 0
+#ANY tcpconnsum.commands.ipv4.rejected >= 0
+ANY tcpconnsum.commands.ipv4.inact_timeout >= 0
+ANY tcpconnsum.commands.ipv4.syn_rejected >= 0
+ANY tcpconnsum.commands.ipv4.res_mac_failed >= 0
+ANY tcpconnsum.commands.ipv4.syn_timeout >= 0
+ANY tcpconnsum.commands.ipv4.rst_drop >= 0
+ANY tcpconnsum.commands.ipv4.total_time_count >= 0
+ANY tcpconnsum.commands.ipv4.total_time_total >= 0
+ANY tcpconnsum.commands.ipv4.total_time_min >= 0
+ANY tcpconnsum.commands.ipv4.total_time_max >= 0
+ANY tcpconnsum.commands.ipv4.open_time_count >= 0
+ANY tcpconnsum.commands.ipv4.open_time_total >= 0
+ANY tcpconnsum.commands.ipv4.open_time_min >= 0
+ANY tcpconnsum.commands.ipv4.open_time_max >= 0
+ANY tcpconnsum.commands.ipv4.exit_time_count >= 0
+ANY tcpconnsum.commands.ipv4.exit_time_total >= 0
+ANY tcpconnsum.commands.ipv4.exit_time_min >= 0
+ANY tcpconnsum.commands.ipv4.exit_time_max >= 0
+ANY tcpconnsum.commands.ipv4.res_ip_attempted == 0
+ANY tcpconnsum.commands.ipv4.res_ip_succeeded == 0
+ANY tcpconnsum.commands.ipv4.res_ip_failed == 0
+ANY tcpconnsum.commands.ipv4.res_mac_attempted >= 0
+ANY tcpconnsum.commands.ipv4.res_mac_succeeded >= 0
+ANY tcpconnsum.commands.ipv4.syn_attempted >= 0
+ANY tcpconnsum.commands.ipv4.open_failed >= 0
+ANY tcpconnsum.commands.ipv4.sack_attempted >= 0
+ANY tcpconnsum.commands.ipv4.sack_negotiated >= 0
+ANY tcpconnsum.commands.ipv4.attempts >= tcpconnsum.commands.ipv4.syn_attempted
+LAST tcpconnsum.commands.ipv4.attempts == tcpconnsum.commands.ipv4.syn_attempted
+ANY tcpconnsum.commands.ipv4.attempts >= tcpconnsum.commands.ipv4.opened + tcpconnsum.commands.ipv4.open_failed
+LAST tcpconnsum.commands.ipv4.attempts == tcpconnsum.commands.ipv4.opened + tcpconnsum.commands.ipv4.open_failed
+ANY tcpconnsum.commands.ipv4.opened >= tcpconnsum.commands.ipv4.closed + tcpconnsum.commands.ipv4.failed
+LAST tcpconnsum.commands.ipv4.opened == tcpconnsum.commands.ipv4.closed + tcpconnsum.commands.ipv4.failed
+ANY tcpconnsum.commands.ipv4.failed == tcpconnsum.commands.ipv4.reset + tcpconnsum.commands.ipv4.data_timeout + tcpconnsum.commands.ipv4.inact_timeout
+ANY tcpconnsum.commands.ipv4.res_mac_attempted >= tcpconnsum.commands.ipv4.res_mac_succeeded + tcpconnsum.commands.ipv4.res_mac_failed
+LAST tcpconnsum.commands.ipv4.res_mac_attempted == tcpconnsum.commands.ipv4.res_mac_succeeded + tcpconnsum.commands.ipv4.res_mac_failed
+ANY tcpconnsum.commands.ipv4.sack_attempted >= tcpconnsum.commands.ipv4.sack_negotiated
+#ANY tcpconnsum.commands.ipv4.rejected == tcp.rx.invdest.count
+
+ANY tcpconnsum.commands.ipv6.attempts >= 0
+ANY tcpconnsum.commands.ipv6.opened >= 0
+ANY tcpconnsum.commands.ipv6.closed >= 0
+ANY tcpconnsum.commands.ipv6.reset >= 0
+ANY tcpconnsum.commands.ipv6.failed >= 0
+ANY tcpconnsum.commands.ipv6.open_timeout >= 0
+ANY tcpconnsum.commands.ipv6.data_timeout >= 0
+#ANY tcpconnsum.commands.ipv6.rejected >= 0
+ANY tcpconnsum.commands.ipv6.inact_timeout >= 0
+ANY tcpconnsum.commands.ipv6.syn_rejected >= 0
+ANY tcpconnsum.commands.ipv6.res_mac_failed >= 0
+ANY tcpconnsum.commands.ipv6.syn_timeout >= 0
+ANY tcpconnsum.commands.ipv6.rst_drop >= 0
+ANY tcpconnsum.commands.ipv6.total_time_count >= 0
+ANY tcpconnsum.commands.ipv6.total_time_total >= 0
+ANY tcpconnsum.commands.ipv6.total_time_min >= 0
+ANY tcpconnsum.commands.ipv6.total_time_max >= 0
+ANY tcpconnsum.commands.ipv6.open_time_count >= 0
+ANY tcpconnsum.commands.ipv6.open_time_total >= 0
+ANY tcpconnsum.commands.ipv6.open_time_min >= 0
+ANY tcpconnsum.commands.ipv6.open_time_max >= 0
+ANY tcpconnsum.commands.ipv6.exit_time_count >= 0
+ANY tcpconnsum.commands.ipv6.exit_time_total >= 0
+ANY tcpconnsum.commands.ipv6.exit_time_min >= 0
+ANY tcpconnsum.commands.ipv6.exit_time_max >= 0
+ANY tcpconnsum.commands.ipv6.res_ip_attempted == 0
+ANY tcpconnsum.commands.ipv6.res_ip_succeeded == 0
+ANY tcpconnsum.commands.ipv6.res_ip_failed == 0
+ANY tcpconnsum.commands.ipv6.res_mac_attempted >= 0
+ANY tcpconnsum.commands.ipv6.res_mac_succeeded >= 0
+ANY tcpconnsum.commands.ipv6.syn_attempted >= 0
+ANY tcpconnsum.commands.ipv6.open_failed >= 0
+ANY tcpconnsum.commands.ipv6.sack_attempted >= 0
+ANY tcpconnsum.commands.ipv6.sack_negotiated >= 0
+ANY tcpconnsum.commands.ipv6.attempts >= tcpconnsum.commands.ipv6.syn_attempted
+LAST tcpconnsum.commands.ipv6.attempts == tcpconnsum.commands.ipv6.syn_attempted
+ANY tcpconnsum.commands.ipv6.attempts >= tcpconnsum.commands.ipv6.opened + tcpconnsum.commands.ipv6.open_failed
+LAST tcpconnsum.commands.ipv6.attempts == tcpconnsum.commands.ipv6.opened + tcpconnsum.commands.ipv6.open_failed
+ANY tcpconnsum.commands.ipv6.opened >= tcpconnsum.commands.ipv6.closed + tcpconnsum.commands.ipv6.failed
+LAST tcpconnsum.commands.ipv6.opened == tcpconnsum.commands.ipv6.closed + tcpconnsum.commands.ipv6.failed
+ANY tcpconnsum.commands.ipv6.failed == tcpconnsum.commands.ipv6.reset + tcpconnsum.commands.ipv6.data_timeout + tcpconnsum.commands.ipv6.inact_timeout
+ANY tcpconnsum.commands.ipv6.res_mac_attempted >= tcpconnsum.commands.ipv6.res_mac_succeeded + tcpconnsum.commands.ipv6.res_mac_failed
+LAST tcpconnsum.commands.ipv6.res_mac_attempted == tcpconnsum.commands.ipv6.res_mac_succeeded + tcpconnsum.commands.ipv6.res_mac_failed
+ANY tcpconnsum.commands.ipv6.sack_attempted >= tcpconnsum.commands.ipv6.sack_negotiated
+#ANY tcpconnsum.commands.ipv6.rejected == tcp6.rx.invdest.count
+
+#UDP
+
+#UDP Transport
+
+#TCPv6
+
+#TCPv6 State
+
+#TCPv6 Flags
+
+#TCPv6 Connections - obsoleted
+#ANY tcp6conns.attempts >= 0
+#ANY tcp6conns.opened >= 0
+#ANY tcp6conns.closed >= 0
+#ANY tcp6conns.reset >= 0
+#ANY tcp6conns.failed >= 0
+#ANY tcp6conns.open_timeout >= 0
+#ANY tcp6conns.data_timeout >= 0
+#ANY tcp6conns.rejected >= 0
+#ANY tcp6conns.idle_timeout >= 0
+#ANY tcp6conns.rst_on_syn >= 0
+#ANY tcp6conns.to_unresolved_ip >= 0
+#ANY tcp6conns.syn_timeout >= 0
+#ANY tcp6conns.rst_drop >= 0
+#ANY tcp6conns.attempts >= tcpconns.opened + tcpconns.rejected
+#LAST tcp6conns.attempts == tcpconns.opened + tcpconns.rejected
+#ANY tcp6conns.opened >= tcpconns.failed + tcpconns.closed
+#LAST tcp6conns.opened == tcpconns.failed + tcpconns.closed
+#ANY tcp6conns.failed >= tcp6conns.reset + tcp6conns.data_timeout + tcp6conns.idle_timeout
+#LAST tcp6conns.failed == tcp6conns.reset + tcp6conns.data_timeout + tcp6conns.idle_timeout
+
+#ANY tcp6conns.total_time_count >= 0
+#ANY tcp6conns.total_time_total >= 0
+#ANY tcp6conns.total_time_min >= 0
+#ANY tcp6conns.total_time_max >= 0
+#ANY tcp6conns.open_time_count >= 0
+#ANY tcp6conns.open_time_total >= 0
+#ANY tcp6conns.open_time_min >= 0
+#ANY tcp6conns.open_time_max >= 0
+#ANY tcp6conns.exit_time_count >= 0
+#ANY tcp6conns.exit_time_total >= 0
+#ANY tcp6conns.exit_time_min >= 0
+#ANY tcp6conns.exit_time_max >= 0
+
+#StatsHeader

@@ -1,0 +1,72 @@
+#=============================================================================================
+# Copyright (C) Oct 2015: OIS (Oleg Strelnikov), LoadDynamix, Inc.
+# Copyright (C) 2015 LoadDynamix, Inc.
+# All rights reserved.
+# Refer to your license for permissions and restrictions.
+#=============================================================================================
+
+LAST load.actions.succeeds > 0
+ANY load.actions.fails == 0
+ANY load.actions.aborts == 0
+LAST load.scenarios.succeeds > 0
+ANY load.scenarios.fails == 0
+ANY load.scenarios.aborts == 0
+LAST load.connections.succeeds > 0
+ANY load.connections.fails == 0
+ANY load.connections.aborts == 0
+
+ANY httpa.credentials_denied == 0
+ANY httpa.access_forbidden == 0
+ANY httpa.server_error == 0
+ANY httpa.reset_by_server == 0
+ANY httpa.disabled_by_client == 0
+ANY httpa.failed == 0
+ANY httpa.aborted == 0
+
+#disabled as obsoleted
+##LAST tcpconns.attempts > 0
+#LAST tcpconns.opened == tcpconns.attempts
+#LAST tcpconns.closed == tcpconns.attempts
+#ANY tcpconns.reset == 0
+#ANY tcpconns.failed == 0
+#ANY tcpconns.open_timeout == 0
+#ANY tcpconns.data_timeout == 0
+#ANY tcpconns.rejected == 0
+#ANY tcpconns.idle_timeout == 0
+#ANY tcpconns.rst_on_syn == 0
+#ANY tcpconns.to_unresolved_ip == 0
+#ANY tcpconns.syn_timeout == 0
+#ANY tcpconns.rst_drop == 0
+
+#disabled as obsoleted
+##LAST tcp6conns.attempts > 0
+#LAST tcp6conns.opened == tcp6conns.attempts
+#LAST tcp6conns.closed == tcp6conns.attempts
+#ANY tcp6conns.reset == 0
+#ANY tcp6conns.failed == 0
+#ANY tcp6conns.open_timeout == 0
+#ANY tcp6conns.data_timeout == 0
+#ANY tcp6conns.rejected == 0
+#ANY tcp6conns.idle_timeout == 0
+#ANY tcp6conns.rst_on_syn == 0
+#ANY tcp6conns.to_unresolved_ip == 0
+#ANY tcp6conns.syn_timeout == 0
+#ANY tcp6conns.rst_drop == 0
+
+LAST tcpconnsum.attempts > 0
+LAST tcpconnsum.opened == tcpconnsum.attempts
+LAST tcpconnsum.closed == tcpconnsum.attempts
+ANY tcpconnsum.reset == 0
+ANY tcpconnsum.failed == 0
+ANY tcpconnsum.open_timeout == 0
+ANY tcpconnsum.data_timeout == 0
+ANY tcpconnsum.rejected == 0
+ANY tcpconnsum.inact_timeout == 0
+ANY tcpconnsum.syn_rejected == 0
+ANY tcpconnsum.res_mac_failed == 0
+ANY tcpconnsum.syn_timeout == 0
+ANY tcpconnsum.rst_drop == 0
+ANY tcpconnsum.res_ip_failed == 0
+LAST cport.tcpconnsum.res_mac_attempted > 0
+LAST tcpconnsum.syn_attempted == tcpconnsum.attempts
+ANY tcpconnsum.open_failed == 0
