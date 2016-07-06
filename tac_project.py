@@ -309,10 +309,12 @@ class LdxProject(object):
                               '--upgrade',
                               '--Force'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         output, err = p.communicate()
-        self.log.verbose(output)
         if p.returncode:
-            raise ProjectFileError('some error occured during converting')
-        self.log.verbose('.swift_test project to AutomationConfig converting finished')
+            self.log.error(output)
+            raise ProjectFileError('An error occured during conversion.')
+        else:
+            self.log.verbose(output)
+        self.log.verbose('.swift_test project to AutomationConfig converting finished.')
         if not self.converted():
             raise ProjectFileError('Failed to convert project to AutomationConfig.xml: %s' % self.project_dir)
 
