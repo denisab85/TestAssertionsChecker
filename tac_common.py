@@ -4,7 +4,7 @@ import logging
 import os
 import re
 import sys
-
+import json
 
 #
 # Constants
@@ -60,13 +60,14 @@ class Arguments(object):
     find_cfg = False
     log_file = os.path.expanduser('~/.tac/tac.log')
     test_list = ""
+    tests_by_type = dict()
     simulate = False
     depth = 256
     parser = argparse.ArgumentParser()
 
     def __init__(self):
         # get arguments
-        self.parser.add_argument('folders', nargs='*', type=str)
+        # self.parser.add_argument('folders', nargs='*', type=str)
         self.parser.add_argument('-v', '--verbose', help='verbose mode', action='store_true')
         self.parser.add_argument('-s', '--stop_ports', help='stop ports before run', action='store_true')
         self.parser.add_argument('-f', '--find_cfg',
@@ -81,8 +82,8 @@ class Arguments(object):
         self.parser.add_argument('-d', '--depth', help='depth of search for test projects in folders', type=int, default=256)
         self.parser.add_argument('-T', '--test_types',
                             help='types of tests',
-                            action='append',
-                            choices=('func', 'perf', '3rd'))
+                            nargs='+',
+                            type = str)
 
         if len(sys.argv[1:]) == 0:
             self.parser.print_help()
@@ -91,8 +92,9 @@ class Arguments(object):
             args = self.parser.parse_args()
 
         self.args = args
-        self.append_folders()
-        self.folders = self.get_types_of_tests()
+        self.parse_test_list()
+        self.get_test_types()
+        # self.expand_folders()
         self.stop_ports = bool(args.stop_ports)
         self.find_cfg = bool(args.find_cfg)
         if args.log_file:
@@ -101,39 +103,70 @@ class Arguments(object):
         self.verbose = bool(args.verbose)
         self.simulate = bool(args.simulate)
 
-    def append_folders(self):
-        """Append test folders from 'folders' parameter or from file given as 'test_list' parameter"""
-        if self.args.folders:
-            for path in self.args.folders:
-                self.folders.extend(dig_tests(path, self.args.depth))
-        elif self.args.test_list:
-            test_list = open(self.args.test_list.name, 'r')
-            for path in test_list:
-                path = path.strip('"\n')
-                if path.startswith("#") or path.startswith(" "):
-                    continue
-                if os.path.exists(path):
-                    self.folders.extend(dig_tests(path, self.args.depth))
+    # def expand_folders(self):
+    #     """Append test folders from 'folders' parameter or from file given as 'test_list' parameter"""
+    #
+    #     if self.args.folders:
+    #         for path in self.args.folders:
+    #             self.folders.extend(dig_tests(path, self.args.depth))
 
+    def parse_test_list(self):
+        """
+        Parse JSON file from --test_list parameter and make a list of test paths for each test type
+        """
+        if self.args.test_list:
+            with open(self.args.test_list.name) as json_file:
+                data = json.load(json_file)
+            for type in data:
+                path_list = list()
+                root_runs = 1
+                path_runs = 1
+                type_name = type['name']
+                try:
+                    type_runs = type['runs']
+                except KeyError:
+                    type_runs = 1
+                print ("Parsing test type: {} [{}]".format(type_name, type.get('comment')))
+                for test_root in type['roots']:
+                    root_name = test_root["name"]
+                    if os.path.exists(root_name):
+                        try:
+                            root_runs = test_root['runs']
+                        except KeyError:
+                            root_runs = 1
+                        print ("\t{} [{}]".format(root_name, test_root.get('comment')))
+                        for path in test_root['paths']:
+                            path_name = path['name']
+                            try:
+                                path_runs = path['runs']
+                            except KeyError:
+                                path_runs = 1
+                            if path_name == "*" :
+                                path_list = []
+                                for i in range(type_runs * root_runs * path_runs):
+                                    path_list += dig_tests(root_name)
+                            else:
+                                full_path = os.path.join(root_name, path_name)
+                                if os.path.exists(full_path):
+                                    for i in range(type_runs*root_runs*path_runs):
+                                        print ("\t\t" + path_name)
+                                        path_list.append(full_path.encode('utf-8'))
+                if self.tests_by_type.has_key(type_name):
+                    self.tests_by_type[type_name] += path_list
+                else:
+                    self.tests_by_type.update({type_name: path_list})
+                print ("{} test runs added.".format(len(path_list)))
 
-    def get_types_of_tests(self):
+    def get_test_types(self):
         """
         Return list of full paths to directories that contains specified types of tests.
         Ex.: functional tests only.
         """
-        if self.args.test_types is None:
-            self.args.test_types = ['func', 'perf', '3rd']
-            # TODO: Return original paths to save backward compatibility.
-            #   Delete after accept tests naming convention
-            return self.folders
+        # Add test paths of specified types or all (if no type given)
+        for test_type, path_list in self.tests_by_type.iteritems():
+            if (self.args.test_types is None) or (test_type in self.args.test_types):
+                self.folders.extend(path_list)
 
-        res_dir = []
-        # select dirs containing specified tests
-        for tt in self.args.test_types:
-            for directory in self.folders:
-                if '_' + tt in directory:
-                    res_dir.append(directory)
-        return res_dir
 
 #
 # Logging utils

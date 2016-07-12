@@ -42,6 +42,7 @@ class Assertion:
     def __init__(self, expr, source_file, num, log):
         self.source_file = source_file
         self.active = True
+        self.multiport = False
         self.ignored = False
         self.log = log
         self.vars = dict()
@@ -76,7 +77,8 @@ class Assertion:
         expr = expr.replace('> =', '>=')
         expr = expr.replace('< =', '<=')
         expr = expr.replace('= =', '==')
-        return (' '.join(expr.split())).split()
+        result = (' '.join(expr.split())).split()
+        return result
 
     def tokenize(self):
         nport = 0
@@ -365,7 +367,6 @@ class Assertions:
             raise AssertionsError('Summary files not found.')
         ignored_counters = set()
         ignore_assertions_count = 0
-        summary = swifttest.Summary(self.summary_files[0])
         # test each summary counter for validity
         for a in self.assertions:
             a_ignored = False
